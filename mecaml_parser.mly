@@ -1,5 +1,7 @@
 %{
 open MeCaml
+}%
+
 
 %token EOF, TYPE
 %token BOOL, CHAR, SHORT, INT32, INT64
