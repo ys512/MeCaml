@@ -42,4 +42,5 @@ tagdef:
 
 tag_spec:
 | id = ID						{ Tag id }
-| tag_spec UN
+| t1 = tag_spec ADD t2 = tag_spec         { Union (t1, t2) }
+| t1 = tag_spec CROSS t2 = tag_spec       { Product (t1, t2) }
