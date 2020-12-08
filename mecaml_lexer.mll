@@ -1,8 +1,15 @@
 {
-open MeCaml_parser
-exception Lexing_error of MeCaml.location * string
+open Mecaml_parser
 
-let id = (['a'-'z' 'A'-'Z'] ['a'-'z' 'A'-'Z' '_' '0'-'9']*)
+let unexpected_character lexbuf c =
+  Printf.ksprintf failwith "Unexpected character %c" c
+  
+let int_out_of_range lexbuf s =
+  Printf.ksprintf failwith "Int out of range %s" s  
+}
+
+let id = (['a'-'z'] ['a'-'z' 'A'-'Z' '_' '0'-'9']*)
+let ID = (['A'-'Z'] ['a'-'z' 'A'-'Z' '_' '0'-'9']*)
 let int = (['-']? ['0'-'9']+)
 let ws = ['\t' ' ' '\n']*
 let comment = '#' [^'\n']*
@@ -11,32 +18,48 @@ let char = '\'' ([^'\''] | ('\\' '\'')) '\''
 
 rule lex = parse
   | eof      { EOF }
-  | 'type'   { TYPE }
-  | 'bool'   { BOOL }
-  | 'char'   { CHAR }
-  | 'short'  { SHORT }
-  | 'int32'  { INT32 }
-  | 'int64'  { INT64 }
+  | "type"   { TYPE }
+  | "tag"    { TAG }
   
+  | "bool"   { BOOL }
+  | "char"   { CHAR }
+  | "short"  { SHORT }
+  | "int32"  { INT32 }
+  | "int64"  { INT64 }
+  
+  | '('      { LPAREN }
+  | ')'      { RPAREN }
   | '{'      { LBRACE }
   | '}'      { RBRACE }
-  | '{|'     { LCAST }
-  | '|}'     { RCAST }
+  | "{|"     { LCAST }
+  | "|}"     { RCAST }
+  
   | '*'      { CROSS }
   | '+'		 { PLUS }
-  | 'tag'    { TAG }
-  | ':'      { COLON }
-  | 'if'     { IF }
-  | 'then'   { THEN }
-  | 'else'   { ELSE }
-  | 'match'  { MATCH }
-  | 'with'   { WITH }
-  | '|'      { VBAR }
-  | 'ref'    { REF }
   
+  | "if"     { IF }
+  | "then"   { THEN }
+  | "else"   { ELSE }
+  | "match"  { MATCH }
+  | "with"   { WITH }
+  | '|'      { VBAR }
+  | "->"     { RARROW }
+  
+  | '>'      { GT }
+  | '<'      { LT }
   | '='      { EQ }
+  
+  | "size"   { SIZE }
+  | "ref"    { REF }
+  | "new"	 { NEW }
+  | "fun"	 { FUN }
+  
   | ','	     { COMMA }
+  | ':'      { COLON }
+  | ';'      { SEMICOLON }
+  
   | id as x  { ID x }
+  | ID as x  { LABEL x }
   | int as i { try INT (int_of_string i)
 			   with Failure _ -> int_out_of_range lexbuf i }
   

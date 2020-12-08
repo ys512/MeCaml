@@ -1,25 +1,31 @@
-t ::= bool | char | short | int32 | int64 | {t}  | {|t|}
+t ::= id | {t}  | {|t|}	
 
-​       | t1 * t2 | tag ID | ID : t
+​       | t1 * t2 | let x = t1 in t2 | x : id (*only for tags\*)
 
-​       | if e then t1 else t2 
+​       | match e with (| p_e ->  t)+
 
-​       | match e with (| v :  t)+
+​       | t ref | t1 -> t2
 
-​       | t ref
+tag ::= tag id = tag_specs
 
-tag ::= tag ID = tag_specs
-
-tag_specs = {(tag_name,)*tag_name} | ID | tag_specs U tag_specs | tag_specs X tag_specs
+tag_specs ::= {(ID,)*ID} | id | tag_specs U tag_specs | tag_specs X tag_specs
 
 
 
-v :: = n | true | false | tag_name
+v :: = n | id | tag ID
 
-e :: = v | size(t) 
+e :: = v | size(t) | e1 > e2 | e1 = e2 | if e then e1 else e2
 
-| (e1, e2) | fst(e) | snd(e) 
+p_e :: = id | n | tag ID
 
-| e1 > e2 | e1 < e2 | e1 = e2 
 
-| if e then e1 else e2
+
+c :: = n | id | {c} | (c1, c2) | tag ID | new c | fn x : T -> c
+
+​         | match c with (| p_c -> c) + | c1 c2 | c : T
+
+p_c :: = id | {p_c} | (p1, p2) | tag ID | new p_c | p_c : T
+
+
+
+e1|- a->b  e2 |- a      =>      e1 e2 |- b
