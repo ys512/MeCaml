@@ -25,20 +25,20 @@ module MenhirBasics = struct
     | LCAST
     | LBRACE
     | LABEL of (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 31 "mecaml_parser.ml"
   )
     | INT64
     | INT32
     | INT of (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 38 "mecaml_parser.ml"
   )
     | IF
     | ID of (
-# 16 "mecaml_parser.mly"
+# 15 "mecaml_parser.mly"
       (string)
 # 44 "mecaml_parser.ml"
   )
@@ -134,18 +134,18 @@ let rec _menhir_goto_separated_nonempty_list_COMMA_LABEL_ : _menhir_env -> 'ttv_
     | MenhirState120 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv517 * _menhir_state * (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 140 "mecaml_parser.ml"
         ))) * _menhir_state * 'tv_separated_nonempty_list_COMMA_LABEL_) = Obj.magic _menhir_stack in
         ((let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv515 * _menhir_state * (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 146 "mecaml_parser.ml"
         ))) * _menhir_state * 'tv_separated_nonempty_list_COMMA_LABEL_) = Obj.magic _menhir_stack in
         ((let ((_menhir_stack, _menhir_s, (x : (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 151 "mecaml_parser.ml"
         ))), _, (xs : 'tv_separated_nonempty_list_COMMA_LABEL_)) = _menhir_stack in
@@ -172,11 +172,11 @@ let rec _menhir_goto_separated_nonempty_list_COMMA_LABEL_ : _menhir_env -> 'ttv_
             let _3 = () in
             let _1 = () in
             let _v : (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 178 "mecaml_parser.ml"
             ) = 
-# 48 "mecaml_parser.mly"
+# 47 "mecaml_parser.mly"
                                                         ( Tagset _2 )
 # 182 "mecaml_parser.ml"
              in
@@ -192,7 +192,7 @@ let rec _menhir_goto_separated_nonempty_list_COMMA_LABEL_ : _menhir_env -> 'ttv_
         _menhir_fail ()
 
 and _menhir_run45 : _menhir_env -> 'ttv_tail * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 198 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -218,7 +218,7 @@ and _menhir_run45 : _menhir_env -> 'ttv_tail * _menhir_state * (
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) MenhirState45
 
 and _menhir_run47 : _menhir_env -> 'ttv_tail * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 224 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -244,7 +244,7 @@ and _menhir_run47 : _menhir_env -> 'ttv_tail * _menhir_state * (
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) MenhirState47
 
 and _menhir_run16 : _menhir_env -> 'ttv_tail * _menhir_state -> (
-# 16 "mecaml_parser.mly"
+# 15 "mecaml_parser.mly"
       (string)
 # 250 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -253,44 +253,44 @@ and _menhir_run16 : _menhir_env -> 'ttv_tail * _menhir_state -> (
     let (_menhir_env : _menhir_env) = _menhir_env in
     let (_menhir_stack : 'freshtv513 * _menhir_state) = Obj.magic _menhir_stack in
     let ((id : (
-# 16 "mecaml_parser.mly"
+# 15 "mecaml_parser.mly"
       (string)
 # 259 "mecaml_parser.ml"
     )) : (
-# 16 "mecaml_parser.mly"
+# 15 "mecaml_parser.mly"
       (string)
 # 263 "mecaml_parser.ml"
     )) = _v in
     ((let (_menhir_stack, _menhir_s) = _menhir_stack in
     let _1 = () in
     let _v : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 270 "mecaml_parser.ml"
     ) = 
-# 73 "mecaml_parser.mly"
+# 72 "mecaml_parser.mly"
                      ( Tag id )
 # 274 "mecaml_parser.ml"
      in
     _menhir_goto_expr _menhir_env _menhir_stack _menhir_s _v) : 'freshtv514)
 
 and _menhir_reduce22 : _menhir_env -> 'ttv_tail * _menhir_state * (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 281 "mecaml_parser.ml"
 ) -> 'ttv_return =
   fun _menhir_env _menhir_stack ->
     let (_menhir_stack, _menhir_s, (n : (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 287 "mecaml_parser.ml"
     ))) = _menhir_stack in
     let _v : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 292 "mecaml_parser.ml"
     ) = 
-# 71 "mecaml_parser.mly"
+# 70 "mecaml_parser.mly"
                   ( Int n )
 # 296 "mecaml_parser.ml"
      in
@@ -309,7 +309,7 @@ and _menhir_goto_separated_nonempty_list_VBAR_comp_match_case_ : _menhir_env -> 
         let (_menhir_s : _menhir_state) = _menhir_s in
         let ((_1 : 'tv_separated_nonempty_list_VBAR_comp_match_case_) : 'tv_separated_nonempty_list_VBAR_comp_match_case_) = _v in
         ((let _v : 'tv_comp_match_cases = 
-# 103 "mecaml_parser.mly"
+# 102 "mecaml_parser.mly"
                                                   ( _1 )
 # 315 "mecaml_parser.ml"
          in
@@ -319,7 +319,7 @@ and _menhir_goto_separated_nonempty_list_VBAR_comp_match_case_ : _menhir_env -> 
         let (_v : 'tv_comp_match_cases) = _v in
         ((let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv501 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 325 "mecaml_parser.ml"
         )) * _menhir_state) = Obj.magic _menhir_stack in
@@ -327,25 +327,25 @@ and _menhir_goto_separated_nonempty_list_VBAR_comp_match_case_ : _menhir_env -> 
         let (_v : 'tv_comp_match_cases) = _v in
         ((let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv499 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 333 "mecaml_parser.ml"
         )) * _menhir_state) = Obj.magic _menhir_stack in
         let (_ : _menhir_state) = _menhir_s in
         let ((cases : 'tv_comp_match_cases) : 'tv_comp_match_cases) = _v in
         ((let (((_menhir_stack, _menhir_s), _, (c : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 340 "mecaml_parser.ml"
         ))), _) = _menhir_stack in
         let _3 = () in
         let _1 = () in
         let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 347 "mecaml_parser.ml"
         ) = 
-# 98 "mecaml_parser.mly"
+# 97 "mecaml_parser.mly"
                                                ( Match (c, cases) )
 # 351 "mecaml_parser.ml"
          in
@@ -371,7 +371,7 @@ and _menhir_goto_separated_nonempty_list_VBAR_comp_match_case_ : _menhir_env -> 
         _menhir_fail ()
 
 and _menhir_run94 : _menhir_env -> 'ttv_tail * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 377 "mecaml_parser.ml"
 ) -> _menhir_state -> 'ttv_return =
@@ -406,7 +406,7 @@ and _menhir_run94 : _menhir_env -> 'ttv_tail * _menhir_state * (
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) MenhirState94
 
 and _menhir_run125 : _menhir_env -> 'ttv_tail * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 412 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -426,7 +426,7 @@ and _menhir_run125 : _menhir_env -> 'ttv_tail * _menhir_state * (
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) MenhirState125
 
 and _menhir_run127 : _menhir_env -> 'ttv_tail * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 432 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -446,7 +446,7 @@ and _menhir_run127 : _menhir_env -> 'ttv_tail * _menhir_state * (
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) MenhirState127
 
 and _menhir_run119 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 452 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -458,7 +458,7 @@ and _menhir_run119 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | COMMA ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : 'freshtv493 * _menhir_state * (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 464 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -474,12 +474,12 @@ and _menhir_run119 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | RBRACE ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : 'freshtv495 * _menhir_state * (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 480 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
         ((let (_menhir_stack, _menhir_s, (x : (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 485 "mecaml_parser.ml"
         ))) = _menhir_stack in
@@ -494,7 +494,7 @@ and _menhir_run119 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         _menhir_env._menhir_error <- true;
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : 'freshtv497 * _menhir_state * (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 500 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -511,7 +511,7 @@ and _menhir_run73 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : 'freshtv489 * _menhir_state) = Obj.magic _menhir_stack in
         let (_v : (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 517 "mecaml_parser.ml"
         )) = _v in
@@ -519,22 +519,22 @@ and _menhir_run73 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : 'freshtv487 * _menhir_state) = Obj.magic _menhir_stack in
         let ((id : (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 525 "mecaml_parser.ml"
         )) : (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 529 "mecaml_parser.ml"
         )) = _v in
         ((let (_menhir_stack, _menhir_s) = _menhir_stack in
         let _1 = () in
         let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 536 "mecaml_parser.ml"
         ) = 
-# 111 "mecaml_parser.mly"
+# 110 "mecaml_parser.mly"
                        ( Tag id )
 # 540 "mecaml_parser.ml"
          in
@@ -623,7 +623,7 @@ and _menhir_run77 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) MenhirState77
 
 and _menhir_run78 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 629 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -633,27 +633,27 @@ and _menhir_run78 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     let (_menhir_stack : 'freshtv485) = Obj.magic _menhir_stack in
     let (_menhir_s : _menhir_state) = _menhir_s in
     let ((n : (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 639 "mecaml_parser.ml"
     )) : (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 643 "mecaml_parser.ml"
     )) = _v in
     ((let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 648 "mecaml_parser.ml"
     ) = 
-# 109 "mecaml_parser.mly"
+# 108 "mecaml_parser.mly"
                   ( Int n )
 # 652 "mecaml_parser.ml"
      in
     _menhir_goto_comp_pattern _menhir_env _menhir_stack _menhir_s _v) : 'freshtv486)
 
 and _menhir_run82 : _menhir_env -> 'ttv_tail * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 659 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -703,7 +703,7 @@ and _menhir_run67 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
         let (_menhir_stack : 'freshtv479) = Obj.magic _menhir_stack in
         let (_menhir_s : _menhir_state) = MenhirState67 in
         let (_v : (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 709 "mecaml_parser.ml"
         )) = _v in
@@ -720,7 +720,7 @@ and _menhir_run67 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : 'freshtv477 * _menhir_state * (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 726 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -816,7 +816,7 @@ and _menhir_goto_separated_nonempty_list_VBAR_expr_match_case_ : _menhir_env -> 
         let (_menhir_s : _menhir_state) = _menhir_s in
         let ((_1 : 'tv_separated_nonempty_list_VBAR_expr_match_case_) : 'tv_separated_nonempty_list_VBAR_expr_match_case_) = _v in
         ((let _v : 'tv_expr_match_cases = 
-# 80 "mecaml_parser.mly"
+# 79 "mecaml_parser.mly"
                                                   ( _1 )
 # 822 "mecaml_parser.ml"
          in
@@ -826,7 +826,7 @@ and _menhir_goto_separated_nonempty_list_VBAR_expr_match_case_ : _menhir_env -> 
         let (_v : 'tv_expr_match_cases) = _v in
         ((let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv465 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 832 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -834,25 +834,25 @@ and _menhir_goto_separated_nonempty_list_VBAR_expr_match_case_ : _menhir_env -> 
         let (_v : 'tv_expr_match_cases) = _v in
         ((let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv463 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 840 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
         let (_ : _menhir_state) = _menhir_s in
         let ((cases : 'tv_expr_match_cases) : 'tv_expr_match_cases) = _v in
         ((let ((_menhir_stack, _menhir_s), _, (e : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 847 "mecaml_parser.ml"
         ))) = _menhir_stack in
         let _3 = () in
         let _1 = () in
         let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 854 "mecaml_parser.ml"
         ) = 
-# 68 "mecaml_parser.mly"
+# 67 "mecaml_parser.mly"
                                                ( Match (e, cases) )
 # 858 "mecaml_parser.ml"
          in
@@ -887,7 +887,7 @@ and _menhir_run53 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : 'freshtv459 * _menhir_state) = Obj.magic _menhir_stack in
         let (_v : (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 893 "mecaml_parser.ml"
         )) = _v in
@@ -895,22 +895,22 @@ and _menhir_run53 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : 'freshtv457 * _menhir_state) = Obj.magic _menhir_stack in
         let ((id : (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 901 "mecaml_parser.ml"
         )) : (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 905 "mecaml_parser.ml"
         )) = _v in
         ((let (_menhir_stack, _menhir_s) = _menhir_stack in
         let _1 = () in
         let _v : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 912 "mecaml_parser.ml"
         ) = 
-# 88 "mecaml_parser.mly"
+# 87 "mecaml_parser.mly"
                        ( Tag id )
 # 916 "mecaml_parser.ml"
          in
@@ -924,7 +924,7 @@ and _menhir_run53 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) _menhir_s) : 'freshtv462)
 
 and _menhir_run55 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 930 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -934,27 +934,27 @@ and _menhir_run55 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     let (_menhir_stack : 'freshtv455) = Obj.magic _menhir_stack in
     let (_menhir_s : _menhir_state) = _menhir_s in
     let ((n : (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 940 "mecaml_parser.ml"
     )) : (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 944 "mecaml_parser.ml"
     )) = _v in
     ((let _v : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 949 "mecaml_parser.ml"
     ) = 
-# 86 "mecaml_parser.mly"
+# 85 "mecaml_parser.mly"
                   ( Int n )
 # 953 "mecaml_parser.ml"
      in
     _menhir_goto_expr_pattern _menhir_env _menhir_stack _menhir_s _v) : 'freshtv456)
 
 and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 960 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -964,7 +964,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState40 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv423 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 970 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -978,7 +978,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | THEN ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv419 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 984 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -1006,7 +1006,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv421 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1012 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -1015,11 +1015,11 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState43 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ((('freshtv429 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1021 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1025 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -1029,11 +1029,11 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | ELSE ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv425 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1035 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1039 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -1065,11 +1065,11 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv427 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1071 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1075 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -1078,11 +1078,11 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState45 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv435 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1084 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1088 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -1096,30 +1096,30 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | ELSE | THEN | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv431 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1102 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1106 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (e1 : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1111 "mecaml_parser.ml"
             ))), _, (e2 : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1115 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _2 = () in
             let _v : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1121 "mecaml_parser.ml"
             ) = 
-# 75 "mecaml_parser.mly"
+# 74 "mecaml_parser.mly"
                              ( Gt (e1, e2) )
 # 1125 "mecaml_parser.ml"
              in
@@ -1129,11 +1129,11 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv433 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1135 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1139 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -1142,11 +1142,11 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState47 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv441 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1148 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1152 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -1160,30 +1160,30 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | ELSE | THEN | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv437 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1166 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1170 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (e1 : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1175 "mecaml_parser.ml"
             ))), _, (e2 : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1179 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _2 = () in
             let _v : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1185 "mecaml_parser.ml"
             ) = 
-# 76 "mecaml_parser.mly"
+# 75 "mecaml_parser.mly"
                              ( Eq (e1, e2) )
 # 1189 "mecaml_parser.ml"
              in
@@ -1193,11 +1193,11 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv439 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1199 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1203 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -1206,15 +1206,15 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState49 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ((((('freshtv447 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1212 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1216 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1220 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -1228,28 +1228,28 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | ELSE | THEN | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((((('freshtv443 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1234 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1238 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1242 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((((_menhir_stack, _menhir_s), _, (e0 : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1247 "mecaml_parser.ml"
             ))), _, (e1 : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1251 "mecaml_parser.ml"
             ))), _, (e2 : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1255 "mecaml_parser.ml"
             ))) = _menhir_stack in
@@ -1257,11 +1257,11 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             let _3 = () in
             let _1 = () in
             let _v : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1263 "mecaml_parser.ml"
             ) = 
-# 77 "mecaml_parser.mly"
+# 76 "mecaml_parser.mly"
                                              ( If (e0, e1, e2) )
 # 1267 "mecaml_parser.ml"
              in
@@ -1271,15 +1271,15 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((((('freshtv445 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1277 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1281 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1285 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -1288,7 +1288,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState67 | MenhirState14 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv453 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1294 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -1302,7 +1302,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv449 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1308 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -1326,7 +1326,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv451 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 1332 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -1336,7 +1336,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         _menhir_fail ()
 
 and _menhir_run26 : _menhir_env -> 'ttv_tail * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 1342 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -1344,29 +1344,29 @@ and _menhir_run26 : _menhir_env -> 'ttv_tail * _menhir_state * (
     let _menhir_env = _menhir_discard _menhir_env in
     let (_menhir_env : _menhir_env) = _menhir_env in
     let (_menhir_stack : 'freshtv417 * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 1350 "mecaml_parser.ml"
     )) = Obj.magic _menhir_stack in
     ((let (_menhir_stack, _menhir_s, (t : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 1355 "mecaml_parser.ml"
     ))) = _menhir_stack in
     let _2 = () in
     let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 1361 "mecaml_parser.ml"
     ) = 
-# 63 "mecaml_parser.mly"
+# 62 "mecaml_parser.mly"
                           ( Ref t )
 # 1365 "mecaml_parser.ml"
      in
     _menhir_goto_type_spec _menhir_env _menhir_stack _menhir_s _v) : 'freshtv418)
 
 and _menhir_run28 : _menhir_env -> 'ttv_tail * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 1372 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -1400,7 +1400,7 @@ and _menhir_run28 : _menhir_env -> 'ttv_tail * _menhir_state * (
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) MenhirState28
 
 and _menhir_run30 : _menhir_env -> 'ttv_tail * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 1406 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -1494,7 +1494,7 @@ and _menhir_run17 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) _menhir_s) : 'freshtv414)
 
 and _menhir_run39 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 1500 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -1527,7 +1527,7 @@ and _menhir_run40 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) MenhirState40
 
 and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1533 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -1537,7 +1537,7 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState4 | MenhirState67 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv355 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1543 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -1567,7 +1567,7 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv353 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1573 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -1601,11 +1601,11 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState91 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv369 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1607 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1611 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -1635,26 +1635,26 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | COMMA | EOF | RBRACE | RPAREN | VBAR | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv367 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1641 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1645 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (p : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1650 "mecaml_parser.ml"
             ))), _, (c : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1654 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _2 = () in
             let _v : 'tv_comp_match_case = 
-# 106 "mecaml_parser.mly"
+# 105 "mecaml_parser.mly"
                                       ( (p, c) )
 # 1660 "mecaml_parser.ml"
              in
@@ -1716,11 +1716,11 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState112 | MenhirState110 | MenhirState106 | MenhirState108 | MenhirState105 | MenhirState103 | MenhirState71 | MenhirState96 | MenhirState93 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv373 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1722 "mecaml_parser.ml"
         )) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1726 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -1750,29 +1750,29 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | COMMA | EOF | RBRACE | RPAREN | VBAR | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv371 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1756 "mecaml_parser.ml"
             )) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1760 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (c1 : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1765 "mecaml_parser.ml"
             ))), _, (c2 : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1769 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1774 "mecaml_parser.ml"
             ) = 
-# 99 "mecaml_parser.mly"
+# 98 "mecaml_parser.mly"
                            ( App (c1, c2) )
 # 1778 "mecaml_parser.ml"
              in
@@ -1784,7 +1784,7 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState6 | MenhirState101 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv379 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1790 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -1812,7 +1812,7 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | RBRACE ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv377 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1818 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -1820,24 +1820,24 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             ((let _menhir_env = _menhir_discard _menhir_env in
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv375 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1826 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             let (_ : _menhir_state) = _menhir_s in
             ((let ((_menhir_stack, _menhir_s), _, (c : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1832 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _3 = () in
             let _1 = () in
             let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1839 "mecaml_parser.ml"
             ) = 
-# 94 "mecaml_parser.mly"
+# 93 "mecaml_parser.mly"
                              ( Align c )
 # 1843 "mecaml_parser.ml"
              in
@@ -1851,11 +1851,11 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState66 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ((((('freshtv383 * _menhir_state) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 1857 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1861 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -1885,20 +1885,20 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | COMMA | EOF | RBRACE | RPAREN | VBAR | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((((('freshtv381 * _menhir_state) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 1891 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1895 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((((_menhir_stack, _menhir_s), _, (id : 'tv_id)), _, (t : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 1900 "mecaml_parser.ml"
             ))), _, (c : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1904 "mecaml_parser.ml"
             ))) = _menhir_stack in
@@ -1906,11 +1906,11 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             let _3 = () in
             let _1 = () in
             let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1912 "mecaml_parser.ml"
             ) = 
-# 97 "mecaml_parser.mly"
+# 96 "mecaml_parser.mly"
                                                   ( Fun (id, t, c) )
 # 1916 "mecaml_parser.ml"
              in
@@ -1922,7 +1922,7 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState5 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv387 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1928 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -1934,7 +1934,7 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | COMMA ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv385 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1940 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -1990,11 +1990,11 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState107 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ((('freshtv393 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 1996 "mecaml_parser.ml"
         )) * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2000 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2022,11 +2022,11 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | RPAREN ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv391 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2028 "mecaml_parser.ml"
             )) * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2032 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2034,21 +2034,21 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             ((let _menhir_env = _menhir_discard _menhir_env in
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv389 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2040 "mecaml_parser.ml"
             )) * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2044 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             let (_ : _menhir_state) = _menhir_s in
             ((let ((((_menhir_stack, _menhir_s), _, (c1 : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2050 "mecaml_parser.ml"
             ))), _), _, (c2 : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2054 "mecaml_parser.ml"
             ))) = _menhir_stack in
@@ -2056,11 +2056,11 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             let _3 = () in
             let _1 = () in
             let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2062 "mecaml_parser.ml"
             ) = 
-# 95 "mecaml_parser.mly"
+# 94 "mecaml_parser.mly"
                                           ( Pair (c1, c2) )
 # 2066 "mecaml_parser.ml"
              in
@@ -2074,7 +2074,7 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState3 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv397 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2080 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2104,22 +2104,22 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | COMMA | EOF | RBRACE | RPAREN | VBAR | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv395 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2110 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s), _, (c : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2115 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _1 = () in
             let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2121 "mecaml_parser.ml"
             ) = 
-# 96 "mecaml_parser.mly"
+# 95 "mecaml_parser.mly"
                       ( New c )
 # 2125 "mecaml_parser.ml"
              in
@@ -2131,7 +2131,7 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState0 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : 'freshtv409 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2137 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2143,30 +2143,30 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | EOF ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : 'freshtv407 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2149 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             let (_menhir_s : _menhir_state) = MenhirState112 in
             ((let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : 'freshtv405 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2156 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             let (_ : _menhir_state) = _menhir_s in
             ((let (_menhir_stack, _menhir_s, (_1 : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2162 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _2 = () in
             let _v : (
-# 24 "mecaml_parser.mly"
+# 23 "mecaml_parser.mly"
        (Mecaml.comp)
 # 2168 "mecaml_parser.ml"
             ) = 
-# 37 "mecaml_parser.mly"
+# 36 "mecaml_parser.mly"
                    ( _1 )
 # 2172 "mecaml_parser.ml"
              in
@@ -2174,7 +2174,7 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             let (_menhir_stack : 'freshtv403) = _menhir_stack in
             let (_menhir_s : _menhir_state) = _menhir_s in
             let (_v : (
-# 24 "mecaml_parser.mly"
+# 23 "mecaml_parser.mly"
        (Mecaml.comp)
 # 2180 "mecaml_parser.ml"
             )) = _v in
@@ -2182,7 +2182,7 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             let (_menhir_stack : 'freshtv401) = Obj.magic _menhir_stack in
             let (_menhir_s : _menhir_state) = _menhir_s in
             let (_v : (
-# 24 "mecaml_parser.mly"
+# 23 "mecaml_parser.mly"
        (Mecaml.comp)
 # 2188 "mecaml_parser.ml"
             )) = _v in
@@ -2190,11 +2190,11 @@ and _menhir_goto_comp : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             let (_menhir_stack : 'freshtv399) = Obj.magic _menhir_stack in
             let (_menhir_s : _menhir_state) = _menhir_s in
             let ((_1 : (
-# 24 "mecaml_parser.mly"
+# 23 "mecaml_parser.mly"
        (Mecaml.comp)
 # 2196 "mecaml_parser.ml"
             )) : (
-# 24 "mecaml_parser.mly"
+# 23 "mecaml_parser.mly"
        (Mecaml.comp)
 # 2200 "mecaml_parser.ml"
             )) = _v in
@@ -2230,7 +2230,7 @@ and _menhir_fail : unit -> 'a =
     assert false
 
 and _menhir_goto_tag_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2236 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -2240,7 +2240,7 @@ and _menhir_goto_tag_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState117 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ((('freshtv339) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2246 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2254,19 +2254,19 @@ and _menhir_goto_tag_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | EOF ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv335) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2260 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _, (id : 'tv_id)), _, (spec : (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2265 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _3 = () in
             let _1 = () in
             let _v : 'tv_tagdef = 
-# 44 "mecaml_parser.mly"
+# 43 "mecaml_parser.mly"
                                     ( Tagbind (id, spec) )
 # 2272 "mecaml_parser.ml"
              in
@@ -2287,36 +2287,36 @@ and _menhir_goto_tag_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
                 ((let (_menhir_stack, (_1 : 'tv_tagdef)) = _menhir_stack in
                 let _2 = () in
                 let _v : (
-# 25 "mecaml_parser.mly"
+# 24 "mecaml_parser.mly"
        (Mecaml.tagdef)
 # 2293 "mecaml_parser.ml"
                 ) = 
-# 34 "mecaml_parser.mly"
+# 33 "mecaml_parser.mly"
                     ( _1 )
 # 2297 "mecaml_parser.ml"
                  in
                 let (_menhir_env : _menhir_env) = _menhir_env in
                 let (_menhir_stack : 'freshtv323) = _menhir_stack in
                 let (_v : (
-# 25 "mecaml_parser.mly"
+# 24 "mecaml_parser.mly"
        (Mecaml.tagdef)
 # 2304 "mecaml_parser.ml"
                 )) = _v in
                 ((let (_menhir_env : _menhir_env) = _menhir_env in
                 let (_menhir_stack : 'freshtv321) = Obj.magic _menhir_stack in
                 let (_v : (
-# 25 "mecaml_parser.mly"
+# 24 "mecaml_parser.mly"
        (Mecaml.tagdef)
 # 2311 "mecaml_parser.ml"
                 )) = _v in
                 ((let (_menhir_env : _menhir_env) = _menhir_env in
                 let (_menhir_stack : 'freshtv319) = Obj.magic _menhir_stack in
                 let ((_1 : (
-# 25 "mecaml_parser.mly"
+# 24 "mecaml_parser.mly"
        (Mecaml.tagdef)
 # 2318 "mecaml_parser.ml"
                 )) : (
-# 25 "mecaml_parser.mly"
+# 24 "mecaml_parser.mly"
        (Mecaml.tagdef)
 # 2322 "mecaml_parser.ml"
                 )) = _v in
@@ -2332,7 +2332,7 @@ and _menhir_goto_tag_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv337) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2338 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2341,11 +2341,11 @@ and _menhir_goto_tag_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState125 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv345 * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2347 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2351 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2359,30 +2359,30 @@ and _menhir_goto_tag_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | EOF ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv341 * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2365 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2369 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (t1 : (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2374 "mecaml_parser.ml"
             ))), _, (t2 : (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2378 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _2 = () in
             let _v : (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2384 "mecaml_parser.ml"
             ) = 
-# 49 "mecaml_parser.mly"
+# 48 "mecaml_parser.mly"
                                             ( Sum (t1, t2) )
 # 2388 "mecaml_parser.ml"
              in
@@ -2392,11 +2392,11 @@ and _menhir_goto_tag_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv343 * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2398 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2402 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2405,11 +2405,11 @@ and _menhir_goto_tag_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState127 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv351 * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2411 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2415 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2423,30 +2423,30 @@ and _menhir_goto_tag_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | EOF ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv347 * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2429 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2433 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (t1 : (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2438 "mecaml_parser.ml"
             ))), _, (t2 : (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2442 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _2 = () in
             let _v : (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2448 "mecaml_parser.ml"
             ) = 
-# 50 "mecaml_parser.mly"
+# 49 "mecaml_parser.mly"
                                            ( Product (t1, t2) )
 # 2452 "mecaml_parser.ml"
              in
@@ -2456,11 +2456,11 @@ and _menhir_goto_tag_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv349 * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2462 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 2466 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2483,7 +2483,7 @@ and _menhir_run118 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) MenhirState118
 
 and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2489 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -2493,7 +2493,7 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState77 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv291 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2499 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2505,30 +2505,30 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | RBRACE ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv287 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2511 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let _menhir_env = _menhir_discard _menhir_env in
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv285 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2518 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s), _, (p : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2523 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _3 = () in
             let _1 = () in
             let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2530 "mecaml_parser.ml"
             ) = 
-# 112 "mecaml_parser.mly"
+# 111 "mecaml_parser.mly"
                                    ( Align p )
 # 2534 "mecaml_parser.ml"
              in
@@ -2538,7 +2538,7 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv289 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2544 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2547,7 +2547,7 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState76 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv297 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2553 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2559,7 +2559,7 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | COMMA ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv293 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2565 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2589,7 +2589,7 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv295 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2595 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2598,11 +2598,11 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState85 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ((('freshtv305 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2604 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2608 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2614,31 +2614,31 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | RPAREN ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv301 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2620 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2624 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let _menhir_env = _menhir_discard _menhir_env in
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv299 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2631 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2635 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let (((_menhir_stack, _menhir_s), _, (p1 : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2640 "mecaml_parser.ml"
             ))), _, (p2 : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2644 "mecaml_parser.ml"
             ))) = _menhir_stack in
@@ -2646,11 +2646,11 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             let _3 = () in
             let _1 = () in
             let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2652 "mecaml_parser.ml"
             ) = 
-# 113 "mecaml_parser.mly"
+# 112 "mecaml_parser.mly"
                                                           ( Pair (p1, p2) )
 # 2656 "mecaml_parser.ml"
              in
@@ -2660,11 +2660,11 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv303 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2666 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2670 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2673,7 +2673,7 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState75 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv311 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2679 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2685,22 +2685,22 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | COMMA | RARROW | RBRACE | RPAREN ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv307 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2691 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s), _, (p : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2696 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _1 = () in
             let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2702 "mecaml_parser.ml"
             ) = 
-# 114 "mecaml_parser.mly"
+# 113 "mecaml_parser.mly"
                             ( New p )
 # 2706 "mecaml_parser.ml"
              in
@@ -2710,7 +2710,7 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv309 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2716 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2719,7 +2719,7 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState99 | MenhirState72 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : 'freshtv317 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2725 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2731,7 +2731,7 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | RARROW ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : 'freshtv313 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2737 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2765,7 +2765,7 @@ and _menhir_goto_comp_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : 'freshtv315 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2771 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2778,18 +2778,18 @@ and _menhir_reduce4 : _menhir_env -> 'ttv_tail * _menhir_state * 'tv_id -> 'ttv_
   fun _menhir_env _menhir_stack ->
     let (_menhir_stack, _menhir_s, (id : 'tv_id)) = _menhir_stack in
     let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 2784 "mecaml_parser.ml"
     ) = 
-# 92 "mecaml_parser.mly"
+# 91 "mecaml_parser.mly"
                   ( Var id )
 # 2788 "mecaml_parser.ml"
      in
     _menhir_goto_comp _menhir_env _menhir_stack _menhir_s _v
 
 and _menhir_goto_expr_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 2795 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -2797,7 +2797,7 @@ and _menhir_goto_expr_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     let _menhir_stack = (_menhir_stack, _menhir_s, _v) in
     let (_menhir_env : _menhir_env) = _menhir_env in
     let (_menhir_stack : 'freshtv283 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 2803 "mecaml_parser.ml"
     )) = Obj.magic _menhir_stack in
@@ -2807,7 +2807,7 @@ and _menhir_goto_expr_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | RARROW ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : 'freshtv279 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 2813 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2843,7 +2843,7 @@ and _menhir_goto_expr_pattern : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         _menhir_env._menhir_error <- true;
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : 'freshtv281 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 2849 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2854,18 +2854,18 @@ and _menhir_reduce23 : _menhir_env -> 'ttv_tail * _menhir_state * 'tv_id -> 'ttv
   fun _menhir_env _menhir_stack ->
     let (_menhir_stack, _menhir_s, (id : 'tv_id)) = _menhir_stack in
     let _v : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 2860 "mecaml_parser.ml"
     ) = 
-# 72 "mecaml_parser.mly"
+# 71 "mecaml_parser.mly"
                   ( Var id )
 # 2864 "mecaml_parser.ml"
      in
     _menhir_goto_expr _menhir_env _menhir_stack _menhir_s _v
 
 and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2871 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -2875,7 +2875,7 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState101 | MenhirState20 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv193 * _menhir_state) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2881 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2889,30 +2889,30 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | RBRACE ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv189 * _menhir_state) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2895 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let _menhir_env = _menhir_discard _menhir_env in
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv187 * _menhir_state) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2902 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s), _, (t : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2907 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _3 = () in
             let _1 = () in
             let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2914 "mecaml_parser.ml"
             ) = 
-# 64 "mecaml_parser.mly"
+# 63 "mecaml_parser.mly"
                                   ( Align t )
 # 2918 "mecaml_parser.ml"
              in
@@ -2924,7 +2924,7 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv191 * _menhir_state) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2930 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2933,11 +2933,11 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState66 | MenhirState28 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv199 * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2939 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2943 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -2953,30 +2953,30 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | COLON | COMMA | EOF | FUN | ID _ | INT _ | LABEL _ | LBRACE | LPAREN | MATCH | NEW | RBRACE | RCAST | RPAREN | TAG | VBAR | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv195 * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2959 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2963 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (t1 : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2968 "mecaml_parser.ml"
             ))), _, (t2 : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2972 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _2 = () in
             let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2978 "mecaml_parser.ml"
             ) = 
-# 67 "mecaml_parser.mly"
+# 66 "mecaml_parser.mly"
                                         ( Fun (t1, t2) )
 # 2982 "mecaml_parser.ml"
              in
@@ -2986,11 +2986,11 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv197 * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2992 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 2996 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -2999,11 +2999,11 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState30 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv205 * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3005 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3009 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -3019,30 +3019,30 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | COLON | COMMA | EOF | FUN | ID _ | INT _ | LABEL _ | LBRACE | LPAREN | MATCH | NEW | RBRACE | RCAST | RPAREN | TAG | VBAR | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv201 * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3025 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3029 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (t1 : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3034 "mecaml_parser.ml"
             ))), _, (t2 : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3038 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _2 = () in
             let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3044 "mecaml_parser.ml"
             ) = 
-# 66 "mecaml_parser.mly"
+# 65 "mecaml_parser.mly"
                                        ( Product (t1, t2) )
 # 3048 "mecaml_parser.ml"
              in
@@ -3052,11 +3052,11 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv203 * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3058 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3062 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -3065,7 +3065,7 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState19 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv213 * _menhir_state) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3071 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -3079,30 +3079,30 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | RCAST ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv209 * _menhir_state) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3085 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let _menhir_env = _menhir_discard _menhir_env in
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv207 * _menhir_state) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3092 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s), _, (t : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3097 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _3 = () in
             let _1 = () in
             let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3104 "mecaml_parser.ml"
             ) = 
-# 65 "mecaml_parser.mly"
+# 64 "mecaml_parser.mly"
                                 ( Cast t )
 # 3108 "mecaml_parser.ml"
              in
@@ -3114,7 +3114,7 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ('freshtv211 * _menhir_state) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3120 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -3123,7 +3123,7 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState18 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv221 * _menhir_state)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3129 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -3139,19 +3139,19 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | RPAREN ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv217 * _menhir_state)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3145 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let _menhir_env = _menhir_discard _menhir_env in
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv215 * _menhir_state)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3152 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s), _, (t : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3157 "mecaml_parser.ml"
             ))) = _menhir_stack in
@@ -3159,11 +3159,11 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             let _2 = () in
             let _1 = () in
             let _v : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 3165 "mecaml_parser.ml"
             ) = 
-# 74 "mecaml_parser.mly"
+# 73 "mecaml_parser.mly"
                                       ( Size t )
 # 3169 "mecaml_parser.ml"
              in
@@ -3173,7 +3173,7 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv219 * _menhir_state)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3179 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -3182,11 +3182,11 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState59 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv237 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 3188 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3192 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -3202,26 +3202,26 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | COLON | COMMA | EOF | FUN | ID _ | INT _ | LABEL _ | LBRACE | LPAREN | MATCH | NEW | RBRACE | RCAST | RPAREN | TAG | VBAR | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv233 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 3208 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3212 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (p : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 3217 "mecaml_parser.ml"
             ))), _, (t : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3221 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _2 = () in
             let _v : 'tv_expr_match_case = 
-# 83 "mecaml_parser.mly"
+# 82 "mecaml_parser.mly"
                                          ( (p, t) )
 # 3227 "mecaml_parser.ml"
              in
@@ -3275,11 +3275,11 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv235 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 3281 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3285 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -3288,7 +3288,7 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState12 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ((('freshtv243 * _menhir_state) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3294 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -3300,7 +3300,7 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | RARROW ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv239 * _menhir_state) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3306 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -3348,7 +3348,7 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv241 * _menhir_state) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3354 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -3357,11 +3357,11 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState82 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv249 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3363 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3367 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -3377,30 +3377,30 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | COLON | COMMA | RBRACE | RPAREN ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv245 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3383 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3387 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (c : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3392 "mecaml_parser.ml"
             ))), _, (t : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3396 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _2 = () in
             let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3402 "mecaml_parser.ml"
             ) = 
-# 115 "mecaml_parser.mly"
+# 114 "mecaml_parser.mly"
                                         ( Type (c, t) )
 # 3406 "mecaml_parser.ml"
              in
@@ -3410,11 +3410,11 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv247 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3416 "mecaml_parser.ml"
             ))) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3420 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -3423,11 +3423,11 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState94 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv255 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3429 "mecaml_parser.ml"
         )) * _menhir_state) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3433 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -3443,30 +3443,30 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | COLON | COMMA | EOF | FUN | ID _ | INT _ | LABEL _ | LBRACE | LPAREN | MATCH | NEW | RBRACE | RPAREN | TAG | VBAR | WITH ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv251 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3449 "mecaml_parser.ml"
             )) * _menhir_state) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3453 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let (((_menhir_stack, _menhir_s, (c : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3458 "mecaml_parser.ml"
             ))), _), _, (t : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3462 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _2 = () in
             let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3468 "mecaml_parser.ml"
             ) = 
-# 100 "mecaml_parser.mly"
+# 99 "mecaml_parser.mly"
                                   ( Type (c, t) )
 # 3472 "mecaml_parser.ml"
              in
@@ -3476,11 +3476,11 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv253 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3482 "mecaml_parser.ml"
             )) * _menhir_state) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3486 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -3489,7 +3489,7 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     | MenhirState136 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ((('freshtv277) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3495 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -3505,19 +3505,19 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
         | EOF ->
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv273) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3511 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _, (id : 'tv_id)), _, (spec : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3516 "mecaml_parser.ml"
             ))) = _menhir_stack in
             let _3 = () in
             let _1 = () in
             let _v : 'tv_typedef = 
-# 53 "mecaml_parser.mly"
+# 52 "mecaml_parser.mly"
                                          ( Typebind (id, spec) )
 # 3523 "mecaml_parser.ml"
              in
@@ -3538,36 +3538,36 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
                 ((let (_menhir_stack, (_1 : 'tv_typedef)) = _menhir_stack in
                 let _2 = () in
                 let _v : (
-# 26 "mecaml_parser.mly"
+# 25 "mecaml_parser.mly"
        (Mecaml.typedef)
 # 3544 "mecaml_parser.ml"
                 ) = 
-# 31 "mecaml_parser.mly"
+# 30 "mecaml_parser.mly"
                                    ( _1 )
 # 3548 "mecaml_parser.ml"
                  in
                 let (_menhir_env : _menhir_env) = _menhir_env in
                 let (_menhir_stack : 'freshtv261) = _menhir_stack in
                 let (_v : (
-# 26 "mecaml_parser.mly"
+# 25 "mecaml_parser.mly"
        (Mecaml.typedef)
 # 3555 "mecaml_parser.ml"
                 )) = _v in
                 ((let (_menhir_env : _menhir_env) = _menhir_env in
                 let (_menhir_stack : 'freshtv259) = Obj.magic _menhir_stack in
                 let (_v : (
-# 26 "mecaml_parser.mly"
+# 25 "mecaml_parser.mly"
        (Mecaml.typedef)
 # 3562 "mecaml_parser.ml"
                 )) = _v in
                 ((let (_menhir_env : _menhir_env) = _menhir_env in
                 let (_menhir_stack : 'freshtv257) = Obj.magic _menhir_stack in
                 let ((_1 : (
-# 26 "mecaml_parser.mly"
+# 25 "mecaml_parser.mly"
        (Mecaml.typedef)
 # 3569 "mecaml_parser.ml"
                 )) : (
-# 26 "mecaml_parser.mly"
+# 25 "mecaml_parser.mly"
        (Mecaml.typedef)
 # 3573 "mecaml_parser.ml"
                 )) = _v in
@@ -3583,7 +3583,7 @@ and _menhir_goto_type_spec : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             _menhir_env._menhir_error <- true;
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : ((('freshtv275) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3589 "mecaml_parser.ml"
             )) = Obj.magic _menhir_stack in
@@ -3596,11 +3596,11 @@ and _menhir_reduce55 : _menhir_env -> 'ttv_tail * _menhir_state * 'tv_id -> 'ttv
   fun _menhir_env _menhir_stack ->
     let (_menhir_stack, _menhir_s, (id : 'tv_id)) = _menhir_stack in
     let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3602 "mecaml_parser.ml"
     ) = 
-# 61 "mecaml_parser.mly"
+# 60 "mecaml_parser.mly"
                   ( Var id )
 # 3606 "mecaml_parser.ml"
      in
@@ -3628,11 +3628,11 @@ and _menhir_run13 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
     let (_menhir_s : _menhir_state) = _menhir_s in
     ((let _1 = () in
     let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3634 "mecaml_parser.ml"
     ) = 
-# 58 "mecaml_parser.mly"
+# 57 "mecaml_parser.mly"
                  ( Short )
 # 3638 "mecaml_parser.ml"
      in
@@ -3731,11 +3731,11 @@ and _menhir_run21 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
     let (_menhir_s : _menhir_state) = _menhir_s in
     ((let _1 = () in
     let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3737 "mecaml_parser.ml"
     ) = 
-# 60 "mecaml_parser.mly"
+# 59 "mecaml_parser.mly"
                  ( Int64 )
 # 3741 "mecaml_parser.ml"
      in
@@ -3749,11 +3749,11 @@ and _menhir_run22 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
     let (_menhir_s : _menhir_state) = _menhir_s in
     ((let _1 = () in
     let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3755 "mecaml_parser.ml"
     ) = 
-# 59 "mecaml_parser.mly"
+# 58 "mecaml_parser.mly"
                  ( Int32 )
 # 3759 "mecaml_parser.ml"
      in
@@ -3767,11 +3767,11 @@ and _menhir_run23 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
     let (_menhir_s : _menhir_state) = _menhir_s in
     ((let _1 = () in
     let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3773 "mecaml_parser.ml"
     ) = 
-# 57 "mecaml_parser.mly"
+# 56 "mecaml_parser.mly"
                 ( Char )
 # 3777 "mecaml_parser.ml"
      in
@@ -3785,18 +3785,18 @@ and _menhir_run24 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
     let (_menhir_s : _menhir_state) = _menhir_s in
     ((let _1 = () in
     let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3791 "mecaml_parser.ml"
     ) = 
-# 56 "mecaml_parser.mly"
+# 55 "mecaml_parser.mly"
                 ( Bool )
 # 3795 "mecaml_parser.ml"
      in
     _menhir_goto_type_spec _menhir_env _menhir_stack _menhir_s _v) : 'freshtv178)
 
 and _menhir_run2 : _menhir_env -> 'ttv_tail * _menhir_state -> (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 3802 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -3805,44 +3805,44 @@ and _menhir_run2 : _menhir_env -> 'ttv_tail * _menhir_state -> (
     let (_menhir_env : _menhir_env) = _menhir_env in
     let (_menhir_stack : 'freshtv175 * _menhir_state) = Obj.magic _menhir_stack in
     let ((id : (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 3811 "mecaml_parser.ml"
     )) : (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 3815 "mecaml_parser.ml"
     )) = _v in
     ((let (_menhir_stack, _menhir_s) = _menhir_stack in
     let _1 = () in
     let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3822 "mecaml_parser.ml"
     ) = 
-# 93 "mecaml_parser.mly"
+# 92 "mecaml_parser.mly"
                        ( Tag id )
 # 3826 "mecaml_parser.ml"
      in
     _menhir_goto_comp _menhir_env _menhir_stack _menhir_s _v) : 'freshtv176)
 
 and _menhir_reduce3 : _menhir_env -> 'ttv_tail * _menhir_state * (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 3833 "mecaml_parser.ml"
 ) -> 'ttv_return =
   fun _menhir_env _menhir_stack ->
     let (_menhir_stack, _menhir_s, (n : (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 3839 "mecaml_parser.ml"
     ))) = _menhir_stack in
     let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3844 "mecaml_parser.ml"
     ) = 
-# 91 "mecaml_parser.mly"
+# 90 "mecaml_parser.mly"
                   ( Int n )
 # 3848 "mecaml_parser.ml"
      in
@@ -3920,11 +3920,11 @@ and _menhir_goto_id : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_id -> 'tt
         ((let ((_menhir_stack, _menhir_s, (id : 'tv_id)), _, (tag : 'tv_id)) = _menhir_stack in
         let _2 = () in
         let _v : (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 3926 "mecaml_parser.ml"
         ) = 
-# 62 "mecaml_parser.mly"
+# 61 "mecaml_parser.mly"
                              ( Tag (id, tag) )
 # 3930 "mecaml_parser.ml"
          in
@@ -3940,11 +3940,11 @@ and _menhir_goto_id : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_id -> 'tt
         let (_menhir_stack : 'freshtv141 * _menhir_state * 'tv_id) = Obj.magic _menhir_stack in
         ((let (_menhir_stack, _menhir_s, (id : 'tv_id)) = _menhir_stack in
         let _v : (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 3946 "mecaml_parser.ml"
         ) = 
-# 87 "mecaml_parser.mly"
+# 86 "mecaml_parser.mly"
                   ( Var id )
 # 3950 "mecaml_parser.ml"
          in
@@ -3973,11 +3973,11 @@ and _menhir_goto_id : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_id -> 'tt
         let (_menhir_stack : 'freshtv149 * _menhir_state * 'tv_id) = Obj.magic _menhir_stack in
         ((let (_menhir_stack, _menhir_s, (id : 'tv_id)) = _menhir_stack in
         let _v : (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 3979 "mecaml_parser.ml"
         ) = 
-# 110 "mecaml_parser.mly"
+# 109 "mecaml_parser.mly"
                   ( Var id )
 # 3983 "mecaml_parser.ml"
          in
@@ -4041,11 +4041,11 @@ and _menhir_goto_id : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_id -> 'tt
         let (_menhir_stack : 'freshtv165 * _menhir_state * 'tv_id) = Obj.magic _menhir_stack in
         ((let (_menhir_stack, _menhir_s, (id : 'tv_id)) = _menhir_stack in
         let _v : (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 4047 "mecaml_parser.ml"
         ) = 
-# 47 "mecaml_parser.mly"
+# 46 "mecaml_parser.mly"
                     ( Var id )
 # 4051 "mecaml_parser.ml"
          in
@@ -4229,7 +4229,7 @@ and _menhir_run6 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) MenhirState6
 
 and _menhir_run8 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 17 "mecaml_parser.mly"
+# 16 "mecaml_parser.mly"
       (int)
 # 4235 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -4268,7 +4268,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState127 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv23 * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 4274 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4277,7 +4277,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState125 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv25 * _menhir_state * (
-# 22 "mecaml_parser.mly"
+# 21 "mecaml_parser.mly"
       (Mecaml.tag)
 # 4283 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4286,7 +4286,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState120 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv27 * _menhir_state * (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 4292 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4309,7 +4309,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState112 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : 'freshtv35 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4315 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -4318,7 +4318,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState110 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv37 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4324 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -4327,11 +4327,11 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState108 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ((('freshtv39 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4333 "mecaml_parser.ml"
         )) * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4337 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -4340,7 +4340,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState107 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv41 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4346 "mecaml_parser.ml"
         )) * _menhir_state) = Obj.magic _menhir_stack in
@@ -4349,7 +4349,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState106 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv43 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4355 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -4358,11 +4358,11 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState105 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ((((('freshtv45 * _menhir_state) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 4364 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4368 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -4371,7 +4371,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState103 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv47 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4377 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -4390,11 +4390,11 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState96 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv53 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4396 "mecaml_parser.ml"
         )) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4400 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -4403,7 +4403,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState94 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv55 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4409 "mecaml_parser.ml"
         )) * _menhir_state) = Obj.magic _menhir_stack in
@@ -4412,11 +4412,11 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState93 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv57 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4418 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4422 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -4425,7 +4425,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState91 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv59 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4431 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4434,7 +4434,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState85 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv61 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4440 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4443,7 +4443,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState82 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv63 * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4449 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4467,7 +4467,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState72 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv71 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4473 "mecaml_parser.ml"
         )) * _menhir_state) = Obj.magic _menhir_stack in
@@ -4476,7 +4476,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState71 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv73 * _menhir_state) * _menhir_state * (
-# 21 "mecaml_parser.mly"
+# 20 "mecaml_parser.mly"
       (Mecaml.comp)
 # 4482 "mecaml_parser.ml"
         )) = Obj.magic _menhir_stack in
@@ -4490,7 +4490,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState66 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (((('freshtv77 * _menhir_state) * _menhir_state * 'tv_id)) * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 4496 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4504,7 +4504,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState59 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv81 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 4510 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4513,7 +4513,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState52 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv83 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 4519 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4522,11 +4522,11 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState49 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (((('freshtv85 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 4528 "mecaml_parser.ml"
         ))) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 4532 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4535,7 +4535,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState47 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv87 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 4541 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4544,7 +4544,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState45 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv89 * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 4550 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4553,7 +4553,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState43 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : (('freshtv91 * _menhir_state) * _menhir_state * (
-# 20 "mecaml_parser.mly"
+# 19 "mecaml_parser.mly"
       (Mecaml.expr)
 # 4559 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4572,7 +4572,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState30 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv97 * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 4578 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4581,7 +4581,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
     | MenhirState28 ->
         let (_menhir_env : _menhir_env) = _menhir_env in
         let (_menhir_stack : ('freshtv99 * _menhir_state * (
-# 19 "mecaml_parser.mly"
+# 18 "mecaml_parser.mly"
       (Mecaml.metype)
 # 4587 "mecaml_parser.ml"
         ))) = Obj.magic _menhir_stack in
@@ -4643,7 +4643,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
         (raise _eRR : 'freshtv122)
 
 and _menhir_run7 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 4649 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -4653,23 +4653,23 @@ and _menhir_run7 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     let (_menhir_stack : 'freshtv17) = Obj.magic _menhir_stack in
     let (_menhir_s : _menhir_state) = _menhir_s in
     let ((_1 : (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 4659 "mecaml_parser.ml"
     )) : (
-# 15 "mecaml_parser.mly"
+# 14 "mecaml_parser.mly"
       (string)
 # 4663 "mecaml_parser.ml"
     )) = _v in
     ((let _v : 'tv_id = 
-# 41 "mecaml_parser.mly"
+# 40 "mecaml_parser.mly"
                  ( _1 )
 # 4668 "mecaml_parser.ml"
      in
     _menhir_goto_id _menhir_env _menhir_stack _menhir_s _v) : 'freshtv18)
 
 and _menhir_run9 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
-# 16 "mecaml_parser.mly"
+# 15 "mecaml_parser.mly"
       (string)
 # 4675 "mecaml_parser.ml"
 ) -> 'ttv_return =
@@ -4679,16 +4679,16 @@ and _menhir_run9 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     let (_menhir_stack : 'freshtv15) = Obj.magic _menhir_stack in
     let (_menhir_s : _menhir_state) = _menhir_s in
     let ((_1 : (
-# 16 "mecaml_parser.mly"
+# 15 "mecaml_parser.mly"
       (string)
 # 4685 "mecaml_parser.ml"
     )) : (
-# 16 "mecaml_parser.mly"
+# 15 "mecaml_parser.mly"
       (string)
 # 4689 "mecaml_parser.ml"
     )) = _v in
     ((let _v : 'tv_id = 
-# 40 "mecaml_parser.mly"
+# 39 "mecaml_parser.mly"
               ( _1 )
 # 4694 "mecaml_parser.ml"
      in
@@ -4717,7 +4717,7 @@ and _menhir_init : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> _menhir_env =
     }
 
 and toplevel_comp : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (
-# 24 "mecaml_parser.mly"
+# 23 "mecaml_parser.mly"
        (Mecaml.comp)
 # 4723 "mecaml_parser.ml"
 ) =
@@ -4752,7 +4752,7 @@ and toplevel_comp : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) MenhirState0) : 'freshtv14))
 
 and toplevel_tagdef : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (
-# 25 "mecaml_parser.mly"
+# 24 "mecaml_parser.mly"
        (Mecaml.tagdef)
 # 4758 "mecaml_parser.ml"
 ) =
@@ -4785,7 +4785,7 @@ and toplevel_tagdef : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (
         (raise _eRR : 'freshtv10)) : 'freshtv12))
 
 and toplevel_typedef : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (
-# 26 "mecaml_parser.mly"
+# 25 "mecaml_parser.mly"
        (Mecaml.typedef)
 # 4791 "mecaml_parser.ml"
 ) =

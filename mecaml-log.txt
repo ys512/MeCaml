@@ -1,0 +1,236 @@
+
+jeremy@mahler:~/projects/MeCaml$ ls
+a.out    mecaml.cmi  mecaml_lexer.cmi  mecaml_lexer.ml   mecaml.ml          mecaml_parser.cmo  mecaml_parser.mli  README.md
+LICENSE  mecaml.cmo  mecaml_lexer.cmo  mecaml_lexer.mll  mecaml_parser.cmi  mecaml_parser.ml   mecaml_parser.mly  Typing.md
+jeremy@mahler:~/projects/MeCaml$ 
+jeremy@mahler:~/projects/MeCaml$ ls
+a.out    mecaml.cmi  mecaml_lexer.cmi  mecaml_lexer.ml   mecaml.ml          mecaml_parser.cmo  mecaml_parser.mli  README.md
+LICENSE  mecaml.cmo  mecaml_lexer.cmo  mecaml_lexer.mll  mecaml_parser.cmi  mecaml_parser.ml   mecaml_parser.mly  Typing.md
+jeremy@mahler:~/projects/MeCaml$ ocamllex mecaml_lexer.mll
+81 states, 4560 transitions, table size 18726 bytes
+jeremy@mahler:~/projects/MeCaml$ menhir mecaml_parser.mly 
+File "mecaml_parser.mly", line 12, characters 10-12:
+Warning: the token LT is unused.
+File "mecaml_parser.mly", line 14, characters 19-28:
+Warning: the token SEMICOLON is unused.
+Warning: 18 states have shift/reduce conflicts.
+Warning: 3 states have reduce/reduce conflicts.
+Warning: 65 shift/reduce conflicts were arbitrarily resolved.
+Warning: 3 reduce/reduce conflicts were arbitrarily resolved.
+jeremy@mahler:~/projects/MeCaml$ ocamlc mecaml.ml mecaml_parser.mli mecaml_parser.ml mecaml_lexer.ml
+jeremy@mahler:~/projects/MeCaml$ ocamlc -a mecaml.ml mecaml_parser.mli mecaml_parser.ml mecaml_lexer.ml
+Please specify the name of the output file, using option -o
+jeremy@mahler:~/projects/MeCaml$ ocamlc -a -o mecaml.cma mecaml.ml mecaml_parser.mli mecaml_parser.ml mecaml_lexer.ml
+jeremy@mahler:~/projects/MeCaml$ ls mecaml.cma
+mecaml.cma
+jeremy@mahler:~/projects/MeCaml$ file mecaml.cma
+mecaml.cma: OCaml library file (.cma) (Version 028)
+jeremy@mahler:~/projects/MeCaml$ ocaml
+        OCaml version 4.11.1
+
+# #load "mecaml.cma";;
+# #show Mecaml;;
+module Mecaml :
+  sig
+    type metype =
+        Bool
+      | Char
+      | Short
+      | Int32
+      | Int64
+      | Var of string
+      | Tag of string * string
+      | Ref of metype
+      | Align of metype
+      | Cast of metype
+      | Product of metype * metype
+      | Fun of metype * metype
+      | Match of expr * (expr * metype) list
+    and expr =
+        Int of int
+      | Var of string
+      | Tag of string
+      | Size of metype
+      | Gt of expr * expr
+      | Eq of expr * expr
+      | If of expr * expr * expr
+    type comp =
+        Int of int
+      | Var of string
+      | Tag of string
+      | Align of comp
+      | Pair of comp * comp
+      | New of comp
+      | Fun of string * metype * comp
+      | Match of comp * (comp * comp) list
+      | App of comp * comp
+      | Type of comp * metype
+    type tag =
+        Var of string
+      | Tagset of string list
+      | Sum of tag * tag
+      | Product of tag * tag
+    type typedef = Typebind of string * metype
+    type tagdef = Tagbind of string * tag
+  end
+# #show Mecaml_lexer;;
+module Mecaml_lexer :
+  sig
+    val unexpected_character : 'a -> char -> 'b
+    val int_out_of_range : 'a -> string -> 'b
+    val __ocaml_lex_tables : Lexing.lex_tables
+    val lex : Lexing.lexbuf -> Mecaml_parser.token
+    val __ocaml_lex_lex_rec : Lexing.lexbuf -> int -> Mecaml_parser.token
+  end
+# #show Mecaml_parser;;
+module Mecaml_parser :
+  sig
+    type token =
+        WITH
+      | VBAR
+      | TYPE
+      | THEN
+      | TAG
+      | SIZE
+      | SHORT
+      | SEMICOLON
+      | RPAREN
+      | REF
+      | RCAST
+      | RBRACE
+      | RARROW
+      | PLUS
+      | NEW
+      | MATCH
+      | LT
+      | LPAREN
+      | LCAST
+      | LBRACE
+      | LABEL of string
+      | INT64
+      | INT32
+      | INT of int
+      | IF
+      | ID of string
+      | GT
+      | FUN
+      | EQ
+      | EOF
+      | ELSE
+      | CROSS
+      | COMMA
+      | COLON
+      | CHAR
+      | BOOL
+    exception Error
+    val toplevel_typedef :
+      (Lexing.lexbuf -> token) -> Lexing.lexbuf -> Mecaml.typedef
+    val toplevel_tagdef :
+      (Lexing.lexbuf -> token) -> Lexing.lexbuf -> Mecaml.tagdef
+    val toplevel_comp :
+      (Lexing.lexbuf -> token) -> Lexing.lexbuf -> Mecaml.comp
+  end
+# Mecaml_parser.toplevel_typedef;;
+- : (Lexing.lexbuf -> Mecaml_parser.token) -> Lexing.lexbuf -> Mecaml.typedef
+= <fun>
+# #show Mecaml_lexer;;
+module Mecaml_lexer :
+  sig
+    val unexpected_character : 'a -> char -> 'b
+    val int_out_of_range : 'a -> string -> 'b
+    val __ocaml_lex_tables : Lexing.lex_tables
+    val lex : Lexing.lexbuf -> Mecaml_parser.token
+    val __ocaml_lex_lex_rec : Lexing.lexbuf -> int -> Mecaml_parser.token
+  end
+# Mecaml_parser.toplevel_typedef Mecaml_lexer.lex;;
+- : Lexing.lexbuf -> Mecaml.typedef = <fun>
+# #show Lexing;;
+module Lexing = Lexing
+module Lexing :
+  sig
+    type position = {
+      pos_fname : string;
+      pos_lnum : int;
+      pos_bol : int;
+      pos_cnum : int;
+    }
+    val dummy_pos : position
+    type lexbuf = {
+      refill_buff : lexbuf -> unit;
+      mutable lex_buffer : bytes;
+      mutable lex_buffer_len : int;
+      mutable lex_abs_pos : int;
+      mutable lex_start_pos : int;
+      mutable lex_curr_pos : int;
+      mutable lex_last_pos : int;
+      mutable lex_last_action : int;
+      mutable lex_eof_reached : bool;
+      mutable lex_mem : int array;
+      mutable lex_start_p : position;
+      mutable lex_curr_p : position;
+    }
+    val from_channel : ?with_positions:bool -> in_channel -> lexbuf
+    val from_string : ?with_positions:bool -> string -> lexbuf
+    val from_function :
+      ?with_positions:bool -> (bytes -> int -> int) -> lexbuf
+    val set_position : lexbuf -> position -> unit
+    val set_filename : lexbuf -> string -> unit
+    val with_positions : lexbuf -> bool
+    val lexeme : lexbuf -> string
+    val lexeme_char : lexbuf -> int -> char
+    val lexeme_start : lexbuf -> int
+    val lexeme_end : lexbuf -> int
+    val lexeme_start_p : lexbuf -> position
+    val lexeme_end_p : lexbuf -> position
+    val new_line : lexbuf -> unit
+    val flush_input : lexbuf -> unit
+    val sub_lexeme : lexbuf -> int -> int -> string
+    val sub_lexeme_opt : lexbuf -> int -> int -> string option
+    val sub_lexeme_char : lexbuf -> int -> char
+    val sub_lexeme_char_opt : lexbuf -> int -> char option
+    type lex_tables = {
+      lex_base : string;
+      lex_backtrk : string;
+      lex_default : string;
+      lex_trans : string;
+      lex_check : string;
+      lex_base_code : string;
+      lex_backtrk_code : string;
+      lex_default_code : string;
+      lex_trans_code : string;
+      lex_check_code : string;
+      lex_code : string;
+    }
+    val engine : lex_tables -> int -> lexbuf -> int
+    val new_engine : lex_tables -> int -> lexbuf -> int
+  end
+# Lexing.from_string;;
+- : ?with_positions:bool -> string -> Lexing.lexbuf = <fun>
+# let test s = Mecaml_parser.toplevel_typedef Mecaml_lexer.lex (Lexing.from_string s);;
+val test : string -> Mecaml.typedef = <fun>
+# test;;
+- : string -> Mecaml.typedef = <fun>
+# test "type x = bool";;
+- : Mecaml.typedef = Mecaml.Typebind ("x", Mecaml.Bool)
+# test "type x = int32";;
+- : Mecaml.typedef = Mecaml.Typebind ("x", Mecaml.Int32)
+# test "type x = int33";;
+- : Mecaml.typedef = Mecaml.Typebind ("x", Mecaml.Var "int33")
+# test "type x = 33";;
+Exception: Mecaml_parser.MenhirBasics.Error.
+# test "type x = { bool }";;
+- : Mecaml.typedef = Mecaml.Typebind ("x", Mecaml.Align Mecaml.Bool)
+# test "type x = {| bool |}";;
+- : Mecaml.typedef = Mecaml.Typebind ("x", Mecaml.Cast Mecaml.Bool)
+# test "type x = {| bool }";;
+Exception: Mecaml_parser.MenhirBasics.Error.
+# test "type x = match x with 3 -> bool";;
+- : Mecaml.typedef =
+Mecaml.Typebind ("x",
+ Mecaml.Match (Mecaml.Var "x", [(Mecaml.Int 3, Mecaml.Bool)]))
+# test "type x = match x with 3 -> bool | 4 -> int ";;
+- : Mecaml.typedef =
+Mecaml.Typebind ("x",
+ Mecaml.Match (Mecaml.Var "x",
+  [(Mecaml.Int 3, Mecaml.Bool); (Mecaml.Int 4, Mecaml.Var "int")]))
+# 

@@ -1,5 +1,4 @@
-type metype = Bool | Char | Short | Int32 | Int64
-	| Var of string | Tag of string * string
+type metype = Var of string | Tag of string | VarTag of string * string
 	| Ref of metype | Align of metype | Cast of metype
 	| Product of metype * metype | Fun of metype * metype
 	| Match of expr * (expr * metype) list
@@ -20,7 +19,8 @@ type comp = Int of int | Var of string | Tag of string
 	(* | Align of comp_pattern | Pair of comp_pattern * comp_pattern  *)
 	(* | New of comp_pattern | Type of comp_pattern * metype *)
 
-type tag = Var of string | Tagset of string list | Sum of tag * tag | Product of tag * tag
+type tag = Var of string | Tagset of string list 
+	| Sum of tag * tag | Product of tag * tag
 
 type typedef = Typebind of string * metype
 type tagdef = Tagbind of string * tag
