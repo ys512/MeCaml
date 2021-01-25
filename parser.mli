@@ -7,24 +7,23 @@ type token =
   | TYPE
   | THEN
   | TAG
+  | SUB
   | SIZE
-  | SHORT
   | SEMICOLON
   | RPAREN
   | REF
   | RCAST
   | RBRACE
-  | RARROW
-  | PLUS
   | NEW
+  | MUL
   | MATCH
   | LT
   | LPAREN
+  | LET
   | LCAST
   | LBRACE
   | LABEL of (string)
-  | INT64
-  | INT32
+  | INTTYPE
   | INT of (int)
   | IF
   | ID of (string)
@@ -33,11 +32,13 @@ type token =
   | EQ
   | EOF
   | ELSE
-  | CROSS
+  | DIV
   | COMMA
   | COLON
-  | CHAR
-  | BOOL
+  | BOOLTYPE
+  | BOOL of (bool)
+  | ARROW
+  | ADD
 
 (* This exception is raised by the monolithic API functions. *)
 
@@ -45,8 +46,8 @@ exception Error
 
 (* The monolithic API. *)
 
-val toplevel_typedef: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Mecaml.typedef)
+val typedef: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Syntax.typedef)
 
-val toplevel_tagdef: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Mecaml.tagdef)
+val tagdef: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Syntax.tagdef)
 
-val toplevel_comp: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Mecaml.comp)
+val compdef: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Syntax.compdef)

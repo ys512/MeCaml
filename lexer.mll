@@ -1,5 +1,5 @@
 {
-open Mecaml_parser
+open Parser
 
 let unexpected_character lexbuf c =
   Printf.ksprintf failwith "Unexpected character %c" c
@@ -20,12 +20,13 @@ rule lex = parse
   | eof      { EOF }
   | "type"   { TYPE }
   | "tag"    { TAG }
+  | "let"	 { LET }
   
-  | "bool"   { BOOL }
-  | "char"   { CHAR }
-  | "short"  { SHORT }
-  | "int32"  { INT32 }
-  | "int64"  { INT64 }
+  | "bool"   { BOOLTYPE }
+  | "int"	 { INTTYPE }
+  
+  | "true"	 { BOOL true }
+  | "false"  { BOOL false }
   
   | '('      { LPAREN }
   | ')'      { RPAREN }
@@ -34,8 +35,10 @@ rule lex = parse
   | "{|"     { LCAST }
   | "|}"     { RCAST }
   
-  | '*'      { CROSS }
-  | '+'		 { PLUS }
+  | '+'		 { ADD }
+  | '-'		 { SUB }
+  | '*'      { MUL }
+  | '/'		 { DIV }
   
   | "if"     { IF }
   | "then"   { THEN }
@@ -43,7 +46,7 @@ rule lex = parse
   | "match"  { MATCH }
   | "with"   { WITH }
   | '|'      { VBAR }
-  | "->"     { RARROW }
+  | "->"     { ARROW }
   
   | '>'      { GT }
   | '<'      { LT }
