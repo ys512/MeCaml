@@ -46,8 +46,4 @@ exception Error
 
 (* The monolithic API. *)
 
-val typedef: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Syntax.typedef)
-
-val tagdef: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Syntax.tagdef)
-
-val compdef: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Syntax.compdef)
+val start: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Syntax.tagdef list * Syntax.typedef list * Syntax.compdef list)
