@@ -10,15 +10,9 @@ typing_env: string -> ntype
 			variable names to their types
 *)
 
-open Mecaml
-open Env
+open Syntax
+open Norm_type
 
-(*normal type*)
-type ntype = NUnit | NBool | NInt | NTag of string
-	| NMatch of string * (string * ntype) list
-	| NIf of expr * ntype * ntype
-	| NRef of ntype | NAlign of ntype | NCast of ntype
-	| NProd of ntype * ntype | NFun of ntype * ntype
 
 let undef field name = failwith (field ^ ": " ^ name ^ "undefined")
 
@@ -28,9 +22,9 @@ let find x env name =
 
 let rec normalize t value_env = 
 	match t with
-		| TVar x -> find x type_env "type"
+		| TVar x -> find x !Env.type_env "type"
 		| TTag a -> NTag a
-		| TProd(VarTag(x, a), t2) -> 
+		| TProd(TVarTag(x, a), t2) -> 
 			let tags = find x tag_env "tag" in
 			let make_case tag = (tag, normalize t2 (x, tag)::value_env) in
 			NMatch(a, List.map make_case tags)
@@ -45,5 +39,5 @@ let rec normalize t value_env =
 		| TRef t1 -> NRef (normalize t1 value_env)
 		| TAlign t1 -> NAlign (normalize t1 value_env)
 		| TCast t1 -> NCast (normalize t1 value_env)
-		| TProd(t1, t2) -> NProduct (normalize value_env) (normalize t2 value_env)
-		| TFun t1 t2 -> NFun (normalize t1 value_env) (normalize t2 value_env)
+		| TProd(t1, t2) -> NProd (normalize value_env, normalize t2 value_env)
+		| TFun (t1, t2) -> NFun (normalize t1 value_env, normalize t2 value_env)

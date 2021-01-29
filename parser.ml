@@ -4437,17 +4437,12 @@ and start : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (
 # 4438 "parser.ml"
 ) =
   fun lexer lexbuf ->
-    let _menhir_env =
-      let (lexer : Lexing.lexbuf -> token) = lexer in
-      let (lexbuf : Lexing.lexbuf) = lexbuf in
-      ((let _tok = Obj.magic () in
-      {
-        _menhir_lexer = lexer;
-        _menhir_lexbuf = lexbuf;
-        _menhir_token = _tok;
-        _menhir_error = false;
-      }) : _menhir_env)
-    in
+    let _menhir_env = {
+      _menhir_lexer = lexer;
+      _menhir_lexbuf = lexbuf;
+      _menhir_token = Obj.magic ();
+      _menhir_error = false;
+    } in
     Obj.magic (let (_menhir_env : _menhir_env) = _menhir_env in
     let (_menhir_stack : 'freshtv1) = ((), _menhir_env._menhir_lexbuf.Lexing.lex_curr_p) in
     ((let _menhir_env = _menhir_discard _menhir_env in
@@ -4465,4 +4460,4 @@ and start : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (
 # 269 "<standard.mly>"
   
 
-# 4469 "parser.ml"
+# 4464 "parser.ml"
