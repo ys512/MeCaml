@@ -18,7 +18,6 @@ open Syntax
 
 %left ADD, SUB
 %left MUL, DIV
-%right ARROW
 
 %type <Syntax.metype> type_spec
 %type <Syntax.expr> expr
@@ -39,7 +38,7 @@ typedef:
 | TYPE x = ID EQ spec = type_spec SEMICOLON	{ Typedef (x, spec) }
 
 compdef:
-| LET x = ID EQ comp = comp	SEMICOLON		{ Compdef (x, comp) }
+| LET LPAREN x = ID COLON t = type_spec RPAREN EQ c = comp SEMICOLON    { Compdef (x, t, c) }
 
 tag_spec:
 | x = ID								  	{ Var x }
@@ -51,12 +50,11 @@ tag_spec:
 type_spec:
 | BOOLTYPE									{ TBool }
 | INTTYPE									{ TInt }
+| x = ID COLON a = ID						{ TVarTag (x, a) }
 | x = ID									{ TVar x }
 | TAG a = ID								{ TTag a }
-| x = ID COLON a = ID						{ TVarTag (x, a) }
 | t = type_spec REF							{ TRef t }
 | LBRACE t = type_spec RBRACE 				{ TAlign t }
-| LCAST t = type_spec RCAST					{ TCast t }
 | t1 = type_spec MUL t2 = type_spec			{ TProd (t1, t2) }
 | t1 = type_spec ARROW t2 = type_spec		{ TFun (t1, t2) }
 | MATCH x = ID WITH cases = t_cases			{ TMatch (x, cases) }
@@ -86,10 +84,11 @@ comp:
 | x = ID									{ Var x }
 | a = LABEL									{ Tag a }
 | LBRACE c = comp RBRACE					{ Align c }
+| a = LABEL c = comp                        { Block (a, c) }
 | LPAREN c1 = comp COMMA c2 = comp RPAREN	{ Pair (c1, c2) }
 | NEW c = comp								{ New c }
 | FUN LPAREN x = ID COLON t = type_spec RPAREN ARROW c = comp	{ Lambda (x, t, c) }
-| MATCH x = ID WITH cases = c_cases			{ Match (x, cases) }
+| MATCH x = ID WITH cases = c_cases			{ Match (Var x, cases) }
 | c1 = comp c2 = comp						{ App (c1, c2) }
 | LPAREN c = comp RPAREN					{ c }
 

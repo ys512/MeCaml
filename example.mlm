@@ -1,0 +1,11 @@
+tag ab = {A, B};
+tag cd = {C, D};
+tag abcd = ab + cd;
+
+type ab = tag ab;
+type abcd = tag abcd;
+type t = (x:ab) * (match x with A -> int | B -> bool);
+
+let (x:abcd) = A;
+let (y:t) = (A, 3);
+let (z:t) = (B, true);
