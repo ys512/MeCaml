@@ -1,3 +1,5 @@
+let word_size = 32
+
 let undef field name = failwith (field ^ ": " ^ name ^ "undefined")
 
 let find x env name =

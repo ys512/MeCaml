@@ -11,7 +11,7 @@ typing_env: string -> ntype
 *)
 open Util
 open Env
-open Syntax
+open Pst
 open Ntype
 
 let rec normalize t value_env = 
@@ -48,3 +48,6 @@ and norm_expr (e:expr) value_env =
 		let ne1 = norm_expr e1 value_env in
 		let ne2 = norm_expr e2 value_env in
 		Ntype.Bop (op, ne1, ne2)
+
+let norm t = 
+	normalize t []
