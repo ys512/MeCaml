@@ -46,4 +46,4 @@ exception Error
 
 (* The monolithic API. *)
 
-val start: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Syntax.tagdef list * Syntax.typedef list * Syntax.compdef list)
+val start: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Pst.prog)

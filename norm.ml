@@ -14,6 +14,12 @@ open Env
 open Pst
 open Ntype
 
+let norm_bop op = 
+	match op with
+	| Pst.GT -> Ntype.GT
+	| Pst.LT -> Ntype.LT
+	| Pst.EQ -> Ntype.EQ
+
 let rec normalize t value_env = 
 	match t with
 		| TUnit -> NUnit
@@ -47,7 +53,7 @@ and norm_expr (e:expr) value_env =
 	| Bop (op, e1, e2) -> 
 		let ne1 = norm_expr e1 value_env in
 		let ne2 = norm_expr e2 value_env in
-		Ntype.Bop (op, ne1, ne2)
+		Ntype.Bop (norm_bop op, ne1, ne2)
 
 let norm t = 
 	normalize t []

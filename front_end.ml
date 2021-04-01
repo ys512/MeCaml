@@ -2,7 +2,7 @@ open Env
 open Util
 open Pprint
 open Lexer
-open Syntax
+open Pst
 open Lexing
 open Parser
 
@@ -14,13 +14,15 @@ let load file =
 
 let parse lexbuf = Parser.start Lexer.lex lexbuf
 
-let rec union ts1 ts2 = 
-    match ts1 with
-    | [] -> ts2
+let rec union ts1 ts2 acc = 
+    match ts2 with
+    | [] -> ts1 @ List.rev acc
     | tg::tail -> 
-        if (List.mem tg ts2)
-        then (union tail ts2)
-        else (union tail (tg::ts2))
+        if (List.mem tg ts1)
+        then union ts1 tail acc
+        else union ts1 tail (tg::acc)
+
+let union ts1 ts2 = union ts1 ts2 []
 
 let prod ts1 ts2 = 
     List.flatten(
@@ -51,13 +53,13 @@ let process_tagdef (Tagdef(tag, def)) =
     | None -> tag_env := (tag, ts)::!tag_env
 
 let process_typedef (Typedef(t, def)) =
-    let nt = Norm.normalize def [] in
+    let nt = Norm.norm def in
     match List.assoc_opt t !type_env with
     | Some _ -> type_env := (t, nt)::(List.remove_assoc t !type_env)
     | None -> type_env := (t, nt)::!type_env
 
 let process_compdef (Compdef(x, t, c)) = 
-    (c, Type_checker.check_comp c (Some (Norm.normalize t [])) [])
+    Type_checker.check c (Some (Norm.norm t))
 
 let from_file filename = 
     let (tagdefs, typedefs, compdefs) = parse (load filename) in

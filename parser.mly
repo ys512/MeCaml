@@ -1,5 +1,5 @@
 %{
-open Syntax
+open Pst
 %}
 
 %token EOF TYPE TAG LET
@@ -19,12 +19,12 @@ open Syntax
 %left ADD, SUB
 %left MUL, DIV
 
-%type <Syntax.metype> type_spec
-%type <Syntax.expr> expr
-%type <Syntax.comp> comp
-%type <Syntax.tag> tag_spec
+%type <Pst.type_expr> type_spec
+%type <Pst.expr> expr
+%type <Pst.comp> comp
+%type <Pst.tag_expr> tag_spec
 
-%start <Syntax.tagdef list * Syntax.typedef list * Syntax.compdef list> start
+%start <Pst.prog> start
 
 %%
 
@@ -88,8 +88,9 @@ comp:
 | LPAREN c1 = comp COMMA c2 = comp RPAREN	{ Pair (c1, c2) }
 | NEW c = comp								{ New c }
 | FUN LPAREN x = ID COLON t = type_spec RPAREN ARROW c = comp	{ Lambda (x, t, c) }
-| MATCH x = ID WITH cases = c_cases			{ Match (Var x, cases) }
+| MATCH c = comp WITH cases = c_cases	    { Match (c, cases) }
 | c1 = comp c2 = comp						{ App (c1, c2) }
+| c = comp COLON t = type_spec              { Typed (c, t) }
 | LPAREN c = comp RPAREN					{ c }
 
 c_cases:
@@ -101,7 +102,8 @@ c_case:
 comp_pattern:
 | n = INT									{ Int n }
 | x = ID									{ Var x }
-| TAG a = LABEL								{ Tag a }
+| a = LABEL								    { Tag a }
+| a = LABEL c = comp_pattern                { Block (a, c) }
 | LBRACE p = comp_pattern RBRACE			{ Align p }
 | LPAREN p1 = comp_pattern COMMA p2 = comp_pattern RPAREN	{ Pair (p1, p2) }
 | NEW p = comp_pattern						{ New p }

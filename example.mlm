@@ -7,5 +7,8 @@ type abcd = tag abcd;
 type t = (x:ab) * (match x with A -> int | B -> bool);
 
 let (x:abcd) = A;
-let (y:t) = (A, 3);
-let (z:t) = (B, true);
+let (y:t) = A 3;
+let (z:t) = B true;
+let (w:int) = match ((A 1):t) with
+    A n -> n
+    | B b -> 2;

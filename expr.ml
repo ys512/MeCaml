@@ -14,10 +14,10 @@ let size_tag tag =
 	bits (List.length (find tag !tag_env "tag"))
 
 let rec size_cases cases = 
-	let size_case s (_, t) = max (find_size t) s in
+	let size_case s (_, t) = max (size_type t) s in
 	List.fold_left size_case 0 cases
 	
-and find_size t = 
+and size_type t = 
 	match t with
 	| NUnit -> 0
 	| NBool -> 1
@@ -29,20 +29,20 @@ and find_size t =
 		let s_cases = size_cases cases in
 		s_tag + s_cases
 	| NIf(e, t1, t2) ->
-		let s1 = find_size t1 in
-		let s2 = find_size t2 in
+		let s1 = size_type t1 in
+		let s2 = size_type t2 in
 		max s1 s2
-	| NAlign t -> ((find_size t - 1) / word_size + 1) * word_size
+	| NAlign t -> ((size_type t - 1) / word_size + 1) * word_size
 	| NProd (t1, t2) ->
-		let s1 = find_size t1 in
-		let s2 = find_size t2 in
+		let s1 = size_type t1 in
+		let s2 = size_type t2 in
 		s1 + s2
 	| _ -> failwith "type cannot be sized"
 
 let rec eval (ne:nexpr) = 
 	match ne with
 	| Int n -> EInt n
-	| Size t -> EInt (find_size t)
+	| Size t -> EInt (size_type t)
 	| Bop (op, e1, e2) -> 
 		let v1 = eval e1 in
 		let v2 = eval e2 in

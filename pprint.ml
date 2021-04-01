@@ -1,5 +1,6 @@
-open Syntax
+open Pst
 open Ntype
+open Printf
 
 let rec str_expr (e:nexpr) = 
   match e with
@@ -20,8 +21,8 @@ and str_type (t:ntype) =
   | NInt -> "int"
   | NTag a -> "tag " ^ a
   | NMatch (a, cases) -> 
-    let string_case s (x, t') = s ^ " |" ^ x ^ "->" ^ (str_type t') in
-    List.fold_left string_case "(match a with" cases ^ ")"
+    let string_case (x, t') = sprintf "|%s->%s" x (str_type t') in
+    sprintf "(match %s with %s )" a (String.concat " " (List.map string_case cases)) 
   | NIf (expr, t1, t2) ->
     let e_s = str_expr expr in
     let t1_s = str_type t1 in
