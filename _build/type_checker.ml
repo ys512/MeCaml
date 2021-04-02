@@ -79,9 +79,10 @@ and check_block a c target typing_env =
 	match target with
 	| Some (NMatch (ta, cases)) ->
 		let _ = check_tag a (Some (NTag ta)) in 
-		let (cc, tc) = check_comp c (Some (List.assoc a cases)) typing_env in
+		let (cc, tc) = check_comp c (Some (List.assoc ta cases)) typing_env in
 		(Tst.Pair ((Tst.Tag a, NTag ta), (cc, tc)), NMatch(ta, cases))
 	| _ -> failwith "incompatible types"
+
 
 and check_new c target typing_env = 
 	match target with

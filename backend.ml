@@ -1,4 +1,5 @@
 open Printf
+open Tst
 open Ntype
 open Util
 
@@ -41,7 +42,8 @@ let rec translate ((comp, t):Tst.tcomp) =
   | Tag a, NTag ta        -> translate_tag a ta
   | New c, _              -> singleton(translate c)
   | Align c, _            -> translate c
-  | Pair (c1, c2), NProd (t1, t2)   -> translate_pair c1 c2 t1 t2
+  | Pair (c1, c2), NProd (t1, t2)     -> translate_pair c1 c2 t1 t2
+  | Block (a, c), NMatch (ta, cases)  -> translate_block a c ta cases
   | Lambda (x, c), _      -> translate_lambda x c
   | App (c1, c2), _       -> translate_app c1 c2
   | Match (c1, cases), _  -> translate_match c1 cases
@@ -52,6 +54,10 @@ and translate_pair c1 c2 t1 t2 =
   let w2, b2 = Util.bits_to_words (Expr.size_type t2) in
   sprintf "(global $Mem $combine %s %d %d %s %d %d)" 
   (translate c1) w1 b1 (translate c2) w2 b2 
+
+and translate_block a c ta cases =
+  let tc = List.assoc a cases in
+  translate_pair (Tag a, NTag ta) c (NTag ta) tc
 
 and translate_lambda x c = 
   sprintf "(lambda %s %s)"
@@ -100,4 +106,9 @@ and translate_case count pattern res cont =
         bind (aux (count+2)) aux_3 res1
       )
     ), count1
+  | Tst.Block (a, c), NMatch (ta, cases) -> 
+    let tc = List.assoc a cases in
+    translate_case count 
+      (Pair((Tag a, NTag ta), c), NProd(NTag ta, tc))
+      res cont
   | _ -> failwith "unhandled"

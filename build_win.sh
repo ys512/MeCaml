@@ -7,4 +7,4 @@ rm -f *.cmi
 ocamllex lexer.mll
 menhir parser.mly
 
-ocamlfind ocamlc -a -o mecaml.cma pst.ml ntype.ml env.ml tst.ml parser.mli parser.ml lexer.ml util.ml pprint.ml norm.ml expr.ml type_checker.ml front_end.ml
+ocamlfind ocamlc -a -o mecaml.cma pst.ml ntype.ml env.ml tst.ml parser.mli parser.ml lexer.ml util.ml pprint.ml norm.ml expr.ml type_checker.ml frontend.ml mem.ml backend.ml mecaml.ml -linkall -package malfunction

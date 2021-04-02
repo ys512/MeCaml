@@ -1,0 +1,62 @@
+### Starting build.
+# Target: front_end.ml.depends, tags: { extension:ml, file:front_end.ml, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules front_end.ml > front_end.ml.depends # cached
+# Target: env.ml.depends, tags: { extension:ml, file:env.ml, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules env.ml > env.ml.depends # cached
+# Target: ntype.ml.depends, tags: { extension:ml, file:ntype.ml, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules ntype.ml > ntype.ml.depends # cached
+# Target: ntype.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:ntype.cmo, file:ntype.ml, implem, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o ntype.cmo ntype.ml # cached
+# Target: env.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:env.cmo, file:env.ml, implem, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o env.cmo env.ml # cached
+# Target: lexer.mll, tags: { extension:mll, file:lexer.mll, lexer, ocaml, ocamllex, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamllex.opt -q lexer.mll # cached
+# Target: lexer.ml.depends, tags: { extension:ml, file:lexer.ml, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules lexer.ml > lexer.ml.depends # cached
+# Target: parser.mly.depends, tags: { extension:mly, file:parser.mly, infer, menhir_ocamldep, ocaml, ocamldep, quiet }
+menhir --raw-depend --ocamldep '/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules' parser.mly > parser.mly.depends # cached
+# Target: pst.ml.depends, tags: { extension:ml, file:pst.ml, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules pst.ml > pst.ml.depends # cached
+# Target: pst.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:pst.cmo, file:pst.ml, implem, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o pst.cmo pst.ml # cached
+# Target: parser.mly, tags: { byte, compile, extension:ml, extension:mly, file:parser.ml, file:parser.mly, infer, menhir, ocaml, parser, quiet }
+menhir --ocamlc /home/yilin/.opam/4.08.0/bin/ocamlc.opt --infer parser.mly # cached
+# Target: parser.mli.depends, tags: { extension:mli, file:parser.mli, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules parser.mli > parser.mli.depends # cached
+# Target: parser.cmi, tags: { byte, compile, extension:mli, file:parser.mli, interf, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o parser.cmi parser.mli # cached
+# Target: lexer.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:lexer.cmo, file:lexer.ml, implem, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o lexer.cmo lexer.ml # cached
+# Target: norm.ml.depends, tags: { extension:ml, file:norm.ml, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules norm.ml > norm.ml.depends # cached
+# Target: util.ml.depends, tags: { extension:ml, file:util.ml, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules util.ml > util.ml.depends # cached
+# Target: util.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:util.cmo, file:util.ml, implem, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o util.cmo util.ml # cached
+# Target: norm.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:norm.cmo, file:norm.ml, implem, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o norm.cmo norm.ml # cached
+# Target: pprint.ml.depends, tags: { extension:ml, file:pprint.ml, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules pprint.ml > pprint.ml.depends # cached
+# Target: pprint.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:pprint.cmo, file:pprint.ml, implem, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o pprint.cmo pprint.ml # cached
+# Target: type_checker.ml.depends, tags: { extension:ml, file:type_checker.ml, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules type_checker.ml > type_checker.ml.depends # cached
+# Target: expr.ml.depends, tags: { extension:ml, file:expr.ml, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules expr.ml > expr.ml.depends # cached
+# Target: expr.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:expr.cmo, file:expr.ml, implem, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o expr.cmo expr.ml # cached
+# Target: tst.ml.depends, tags: { extension:ml, file:tst.ml, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules tst.ml > tst.ml.depends # cached
+# Target: tst.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:tst.cmo, file:tst.ml, implem, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o tst.cmo tst.ml # cached
+# Target: type_checker.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:type_checker.cmo, file:type_checker.ml, implem, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o type_checker.cmo type_checker.ml # cached
+# Target: front_end.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:front_end.cmo, file:front_end.ml, implem, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o front_end.cmo front_end.ml # cached
+# Target: parser.ml.depends, tags: { extension:ml, file:parser.ml, ocaml, ocamldep, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamldep.opt -modules parser.ml > parser.ml.depends
+# Target: parser.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:parser.cmo, file:parser.ml, implem, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -c -o parser.cmo parser.ml
+# Target: front_end.cma, tags: { byte, dont_link_with, extension:cma, file:front_end.cma, library, link, ocaml, quiet }
+/home/yilin/.opam/4.08.0/bin/ocamlc.opt -a ntype.cmo env.cmo pst.cmo parser.cmo lexer.cmo util.cmo norm.cmo pprint.cmo expr.cmo tst.cmo type_checker.cmo front_end.cmo -o front_end.cma
+# Compilation successful.
