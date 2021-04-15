@@ -1,0 +1,8 @@
+*.cmi
+*.cmo
+*.cma
+lexer.ml
+parser.ml
+
+_build/
+.vscode/
