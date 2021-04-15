@@ -14,7 +14,7 @@ and comp =
   | Tag of tag
 
   | Pair of tcomp * tcomp
-  | Block of tag * tcomp
+  | Block of tcomp * tcomp
   
   | Lambda of var * tcomp
   | App of tcomp * tcomp

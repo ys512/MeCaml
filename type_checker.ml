@@ -2,7 +2,6 @@ open Util
 open Ntype
 open Norm
 open Expr
-open Env
 
 let eq t1 t2 = (t1 = t2)
 	
@@ -14,7 +13,7 @@ let match_type t1 t2 =
 let check_tag a target = 
 		match target with
 		| Some (NTag ta) -> 
-			let tagset = List.assoc ta !tag_env in
+			let tagset = List.assoc ta !Env.tag_env in
 			if List.mem a tagset then 
 				(Tst.Tag a, NTag ta) 
 			else failwith (a ^ "not in tagset" ^ ta)
@@ -78,9 +77,9 @@ and check_pair c1 c2 target typing_env =
 and check_block a c target typing_env = 
 	match target with
 	| Some (NMatch (ta, cases)) ->
-		let _ = check_tag a (Some (NTag ta)) in 
-		let (cc, tc) = check_comp c (Some (List.assoc a cases)) typing_env in
-		(Tst.Pair ((Tst.Tag a, NTag ta), (cc, tc)), NMatch(ta, cases))
+		let ca = check_tag a (Some (NTag ta)) in 
+		let cc = check_comp c (Some (List.assoc a cases)) typing_env in
+		(Tst.Block (ca, cc), NMatch(ta, cases))
 	| _ -> failwith "incompatible types"
 
 and check_new c target typing_env = 

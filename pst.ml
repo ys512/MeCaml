@@ -11,7 +11,7 @@ type type_expr =
 	| TInt 
 	| TBool 
 	
-	| TVar of var 
+	| TVar of var
 	| TTag of var
 	
 	| TProd of type_expr * type_expr
