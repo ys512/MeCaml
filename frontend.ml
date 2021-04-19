@@ -58,8 +58,7 @@ let process_typedef (Typedef(t, def)) =
     | Some _ -> type_env := (t, nt)::(List.remove_assoc t !type_env)
     | None -> type_env := (t, nt)::!type_env
 
-let process_compdef (Compdef(x, t, c)) = 
-    Type_checker.check c (Some (Norm.norm t))
+let process_compdef = Type_checker.check
 
 let from_file filename = 
     let (tagdefs, typedefs, compdefs) = parse (load filename) in

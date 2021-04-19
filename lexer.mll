@@ -17,59 +17,61 @@ let string = '"' ([^'"'] | ('\\' '"'))* '"'
 let char = '\'' ([^'\''] | ('\\' '\'')) '\''
 
 rule lex = parse
-  | eof      { EOF }
-  | "type"   { TYPE }
-  | "tag"    { TAG }
-  | "let"	 { LET }
+  | eof       { EOF }
+  | "type"    { TYPE }
+  | "tag"     { TAG }
+  | "let"     { LET }
   
-  | "bool"   { BOOLTYPE }
-  | "int"	 { INTTYPE }
+  | "bool"    { BOOLTYPE }
+  | "int"     { INTTYPE }
   
-  | "true"	 { BOOL true }
-  | "false"  { BOOL false }
+  | "true"    { BOOL true }
+  | "false"   { BOOL false }
   
-  | '('      { LPAREN }
-  | ')'      { RPAREN }
-  | '{'      { LBRACE }
-  | '}'      { RBRACE }
-  | "{|"     { LCAST }
-  | "|}"     { RCAST }
+  | '('       { LPAREN }
+  | ')'       { RPAREN }
+  | '{'       { LBRACE }
+  | '}'       { RBRACE }
+  | "{|"      { LCAST }
+  | "|}"      { RCAST }
   
-  | '+'		 { ADD }
-  | '-'		 { SUB }
-  | '*'      { MUL }
-  | '/'		 { DIV }
+  | '+'       { ADD }
+  | '-'       { SUB }
+  | '*'       { MUL }
+  | '/'       { DIV }
   
-  | "if"     { IF }
-  | "then"   { THEN }
-  | "else"   { ELSE }
-  | "match"  { MATCH }
-  | "with"   { WITH }
-  | '|'      { VBAR }
-  | "->"     { ARROW }
+  | "if"      { IF }
+  | "then"    { THEN }
+  | "else"    { ELSE }
+  | "match"   { MATCH }
+  | "with"    { WITH }
+  | '|'       { VBAR }
+  | "->"      { ARROW }
   
-  | '>'      { GT }
-  | '<'      { LT }
-  | '='      { EQ }
+  | '>'       { GT }
+  | '<'       { LT }
+  | '='       { EQ }
   
-  | "size"   { SIZE }
-  | "ref"    { REF }
-  | "new"	 { NEW }
-  | "fun"	 { FUN }
+  | "size"    { SIZE }
+  | "ref"     { REF }
+  | "new"     { NEW }
+  | "fun"     { FUN }
+  | "let"     { LET }
+  | "in"      { IN }
   
-  | ','	     { COMMA }
-  | ':'      { COLON }
-  | ';'      { SEMICOLON }
+  | ','       { COMMA }
+  | ':'       { COLON }
+  | ';'       { SEMICOLON }
   
-  | id as x  { ID x }
-  | ID as x  { LABEL x }
-  | int as i { try INT (int_of_string i)
+  | id as x   { ID x }
+  | ID as x   { LABEL x }
+  | int as i  { try INT (int_of_string i)
 			   with Failure _ -> int_out_of_range lexbuf i }
   
-  | "\n"     { Lexing.new_line lexbuf; lex lexbuf }
-  | ws       { lex lexbuf }
-  | comment  { lex lexbuf }
-  | _  as c  { unexpected_character lexbuf c }
+  | "\n"      { Lexing.new_line lexbuf; lex lexbuf }
+  | ws        { lex lexbuf }
+  | comment   { lex lexbuf }
+  | _  as c   { unexpected_character lexbuf c }
 
 {
 }

@@ -16,6 +16,7 @@ and comp =
   | Pair of tcomp * tcomp
   | Block of tcomp * tcomp
   
+  | Let of var * tcomp * tcomp
   | Lambda of var * tcomp
   | App of tcomp * tcomp
   | Match of tcomp * (tcomp * tcomp) list

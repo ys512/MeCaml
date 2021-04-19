@@ -25,6 +25,7 @@ type token =
   | LABEL of (string)
   | INTTYPE
   | INT of (int)
+  | IN
   | IF
   | ID of (string)
   | GT

@@ -1,8 +1,13 @@
 %{
 open Pst
+
+let rec parse_curry args body = 
+    match args with
+    | [] -> body
+    | (x,t)::tail -> Lambda (x, t, parse_curry tail body)
 %}
 
-%token EOF TYPE TAG LET
+%token EOF TYPE TAG LET IN
 %token BOOLTYPE INTTYPE
 %token LPAREN RPAREN LBRACE RBRACE LCAST RCAST
 %token ADD SUB MUL DIV
@@ -38,7 +43,8 @@ typedef:
 | TYPE x = ID EQ spec = type_spec SEMICOLON	{ Typedef (x, spec) }
 
 compdef:
-| LET LPAREN x = ID COLON t = type_spec RPAREN EQ c = comp SEMICOLON    { Compdef (x, t, c) }
+| LET LPAREN ID COLON t = type_spec RPAREN EQ c = comp SEMICOLON    { Typed (c, t) }
+| c = comp SEMICOLON                        { c }
 
 tag_spec:
 | x = ID								  	{ Var x }
@@ -87,11 +93,17 @@ comp:
 | a = LABEL c = comp                        { Block (a, c) }
 | LPAREN c1 = comp COMMA c2 = comp RPAREN	{ Pair (c1, c2) }
 | NEW c = comp								{ New c }
-| FUN LPAREN x = ID COLON t = type_spec RPAREN ARROW c = comp	{ Lambda (x, t, c) }
+| FUN x = ID COLON t = type_spec ARROW c = comp    { Lambda (x, t, c) }
+| LET x = ID EQ c1 = comp IN c2 = comp      { Let (x, c1, c2) }
+| LET x = ID COLON t = type_spec EQ c1 = comp IN c2 = comp      { Let (x, Typed(c1, t), c2) }
+| LET f = ID args = list(typed_var) EQ c1 = comp IN c2 = comp   { Let (f, parse_curry args c1, c2) }
 | MATCH c = comp WITH cases = c_cases	    { Match (c, cases) }
-| c1 = comp c2 = comp						{ App (c1, c2) }
+| f = comp arg = comp				        { App (f, arg) }
 | c = comp COLON t = type_spec              { Typed (c, t) }
 | LPAREN c = comp RPAREN					{ c }
+
+typed_var:
+x = ID COLON t = type_spec                  { (x, t) }
 
 c_cases:
 | separated_nonempty_list(VBAR, c_case)  	{ $1 }

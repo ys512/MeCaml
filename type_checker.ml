@@ -10,6 +10,9 @@ let match_type t1 t2 =
 	| Some t -> if eq t t2 then t else failwith "incompatible types"
 	| None -> t2
 
+let check_var x target typing_env = 
+	(Tst.Var x,  match_type target (List.assoc x typing_env))
+
 let check_tag a target = 
 		match target with
 		| Some (NTag ta) -> 
@@ -92,53 +95,53 @@ and check_new c target typing_env =
 		(Tst.New (cc, tc), NRef tc)
 	| _ -> failwith "incompatible types"
 
-and check_lambda x t_arg c target typing_env = 
-	let nt_arg = norm t_arg in
+and check_lambda x t c target typing_env = 
+	let tx = norm t in
 	match target with
-	| Some (NFun (_, t2)) -> 
-		let (cc, tc) = check_comp c (Some t2) ((x, nt_arg)::typing_env) 
-		in (Tst.Lambda (x, (cc, tc)), NFun (nt_arg, tc))
+	| Some (NFun (tx', tc)) -> 
+		if tx = tx' then
+			let checked_c = check_comp c (Some tc) ((x, tx)::typing_env) 
+			in (Tst.Lambda (x, checked_c), NFun (tx, tc))
+		else
+			failwith "incompatible types"
 	| None -> 
-		let (cc, tc) = check_comp c None ((x, nt_arg)::typing_env) 
-			in (Tst.Lambda (x, (cc, tc)), NFun (nt_arg, tc))
+		let (cc, tc) = check_comp c None ((x, tx)::typing_env) 
+			in (Tst.Lambda (x, (cc, tc)), NFun (tx, tc))
 	| _ -> failwith "incompatible types"
 
-and check_app c1 c2 target typing_env = 
-	match target with
-	| Some t -> 
-		( match c1 with 
-		| Pst.Lambda (_, t_arg, _) -> 
-			let nt_arg = norm t_arg in
-			let (cc1, tc1) = check_comp c1 (Some (NFun (nt_arg, t))) typing_env in
-			let (cc2, tc2) = check_comp c2 (Some nt_arg) typing_env in
-			(Tst.App ((cc1, tc1), (cc2, tc2)), tc2)
-		| Pst.Var _ -> 
-			let (cc1, tc1) = check_comp c1 None typing_env in
-			let (cc2, tc2) = check_comp c2 None typing_env in
-			(Tst.App ((cc1, tc1), (cc2, tc2)), tc2)
-		| _ -> failwith "cannot apply with non functions")
-	| None -> 
-		let (cc1, tc1) = check_comp c1 None typing_env in
-		let (cc2, tc2) = check_comp c2 None typing_env in
-		(Tst.App ((cc1, tc1), (cc2, tc2)), tc2)
+and check_app f arg target typing_env = 
+	let (cf, tf) = check_comp f None typing_env in
+	( match tf with
+	| NFun (t_arg, t_body) ->
+		let checked_arg = check_comp arg (Some t_arg) typing_env in
+		(Tst.App ((cf, tf), checked_arg), match_type target t_body)
+	| _ -> failwith "cannot apply with non functions")
+
+and check_let x c1 c2 target typing_env = 
+	let checked_c1 = check_comp c1 None typing_env in
+	let checked_c2 = check_comp c2 target ((x, snd checked_c1)::typing_env) in
+	Tst.Let (x, checked_c1, checked_c2), snd checked_c2
 
 and	check_comp (c:Pst.comp) target (typing_env:(string * ntype) list):Tst.tcomp =
 	match c with
 		| Pst.Unit 						-> (Tst.Unit, 	match_type target NUnit)
 		| Pst.Bool b 					-> (Tst.Bool b,	match_type target NBool)
 		| Pst.Int n 					-> (Tst.Int n,  match_type target NInt)
-		| Pst.Var x 					-> (Tst.Var x,  match_type target (List.assoc x typing_env))
+		| Pst.Var x 					-> check_var x target typing_env
 		| Pst.Tag a 					-> check_tag a target
 		| Pst.Align c1 				-> check_align c1 target typing_env
 		| Pst.Pair (c1, c2) 	-> check_pair c1 c2 target typing_env
 		| Pst.Block (a, c1)   -> check_block a c1 target typing_env
 		| New c1 							-> check_new c1 target typing_env
-		| Lambda (x, t, c1) 	-> check_lambda x t c1 target typing_env
+		| Let (x, c1, c2)			-> check_let x c1 c2 target typing_env
+		| Lambda (x, t, c)		-> check_lambda x t c target typing_env
 		| Match (c, cases) 		-> check_match c cases target typing_env
-		| App(c1, c2) 				-> check_app c1 c2 target typing_env
+		| App(f, arg) 				-> check_app f arg target typing_env
 		| Typed(c1, t1) 			-> check_comp c1 (Some (norm t1)) typing_env
 
-and check (c: Pst.comp) target = check_comp c target []
+let check_typed (c: Pst.comp) t = check_comp c (Some t) []
+
+let check c = check_comp c None []
 
 
 

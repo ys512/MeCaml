@@ -38,6 +38,7 @@ type comp =
 	| Pair of comp * comp
 	| Block of tag * comp
 	
+	| Let of var * comp * comp
 	| Lambda of var * type_expr * comp
 	| App of comp * comp
 	| Match of comp * (comp * comp) list 
@@ -55,5 +56,5 @@ type tag_expr = Var of var | Tagset of tag list
 
 type tagdef = Tagdef of var * tag_expr
 type typedef = Typedef of var * type_expr
-type compdef = Compdef of var * type_expr * comp
+type compdef = comp
 type prog = tagdef list * typedef list * compdef list

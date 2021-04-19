@@ -10,7 +10,7 @@ let index e l =
     | hd::tl -> if e = hd then i else idx (i+1) tl
   in idx 0 l
 
-let singleton s = sprintf "(block (tag 0) %s )" s
+let singleton s = sprintf "(block (tag 0) %s)" s
 
 let aux n = sprintf "$aux_%d" n
 
@@ -50,6 +50,7 @@ let rec translate ((comp, t):Tst.tcomp) =
   | Align c, _            -> translate c
   | Pair (c1, c2), _      -> translate_pair c1 c2
   | Block (a, c), _       -> translate_block a c
+  | Let (x, c1, c2), _    -> translate_let x c1 c2
   | Lambda (x, c), _      -> translate_lambda x c
   | App (c1, c2), _       -> translate_app c1 c2
   | Match (c1, cases), _  -> translate_match c1 cases
@@ -62,6 +63,8 @@ and translate_pair (c1, t1) (c2, t2) =
   (translate (c1, t1)) w1 b1 (translate (c2, t2)) w2 b2 
 
 and translate_block a c = translate_pair a c
+
+and translate_let x c1 c2 = bind x (translate c1) (translate c2)
 
 and translate_lambda x c = 
   sprintf "(lambda %s %s)"

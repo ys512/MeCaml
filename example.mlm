@@ -12,3 +12,5 @@ let (z:t) = B true;
 let (w:int) = match ((A 1):t) with
     A n -> n
     | B b -> 2;
+let (foo:int->int) = fun x:int -> x;
+let foo x:int = x in foo 1;
