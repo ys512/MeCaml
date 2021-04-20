@@ -41,7 +41,7 @@ type comp =
 	| Let of var * comp * comp
 	| Lambda of var * type_expr * comp
 	| App of comp * comp
-	| Match of comp * (comp * comp) list 
+	| Match of comp * (comp * comp) list
 
 	| New of comp
 	| Align of comp
