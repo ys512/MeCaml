@@ -52,7 +52,7 @@ let rec check_match c cases target typing_env =
 			let t_head =  snd (snd checked_head) in
 			check_cases tail (Some t_head) (checked_head::acc)
 	in 
-	let c_cases, t_cases = check_cases cases target [] in
+	let c_cases, t_cases = check_cases (List.rev cases) target [] in
 	(Tst.Match ((cc, tc), c_cases), t_cases)
 
 and check_align c target typing_env = 

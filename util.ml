@@ -1,4 +1,4 @@
-let word_size = 32
+let word_size = 64
 
 let undef field name = failwith (field ^ ": " ^ name ^ "undefined")
 

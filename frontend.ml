@@ -1,4 +1,3 @@
-open Env
 open Util
 open Pprint
 open Lexer
@@ -33,32 +32,31 @@ let prod ts1 ts2 =
         ) ts1
     )
 
-let rec process_tag tg = 
-    match tg with
-    | Var x -> find x !tag_env "tag"
+let rec process_tag tag = 
+    match tag with
+    | Var x -> Env.lookup_tag x
     | Tagset ts -> ts
-    | Sum (tg1, tg2) -> 
-        let ts1 = process_tag(tg1) in
-        let ts2 = process_tag(tg2) in
+    | Sum (tag1, tag2) -> 
+        let ts1 = process_tag(tag1) in
+        let ts2 = process_tag(tag2) in
         union ts1 ts2
-    | Prod (tg1, tg2) -> 
-        let ts1 = process_tag(tg1) in
-        let ts2 = process_tag(tg2) in
+    | Prod (tag1, tag2) -> 
+        let ts1 = process_tag(tag1) in
+        let ts2 = process_tag(tag2) in
         prod ts1 ts2
 
-let process_tagdef (Tagdef(tag, def)) = 
+let process_tagdef (tag, def) = 
     let ts = process_tag def in
-    match List.assoc_opt tag !tag_env with
-    | Some _ -> tag_env := (tag, ts)::(List.remove_assoc tag !tag_env)
-    | None -> tag_env := (tag, ts)::!tag_env
+    Env.remove_tag tag; Env.add_tag tag ts
 
-let process_typedef (Typedef(t, def)) =
+let process_typedef (t, def) =
     let nt = Norm.norm def in
-    match List.assoc_opt t !type_env with
-    | Some _ -> type_env := (t, nt)::(List.remove_assoc t !type_env)
-    | None -> type_env := (t, nt)::!type_env
+    Env.remove_type t; Env.add_type t nt
 
-let process_compdef = Type_checker.check
+let process_compdef (x, c) = 
+    let cc, tc = Type_checker.check_comp c None (Env.get_typing ()) in
+    if x = "_" then () else Env.add_typing x tc; (x, (cc, tc))
+    
 
 let from_file filename = 
     let (tagdefs, typedefs, compdefs) = parse (load filename) in

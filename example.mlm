@@ -6,15 +6,15 @@ type ab = tag ab;
 type abcd = tag abcd;
 type t = (x:ab) * (match x with A -> int | B -> bool);
 
-let (x:abcd) = A;
-let (y:t) = A 3;
-let (z:t) = B true;
-let (w:int) = match ((A 1):t) with
-    A n -> n
+let x:abcd = A;
+let y:t = A 3;
+let z:t = B true;
+let w:int = match ((A 1):t) with
+    | A n -> n
     | B b -> 2;
-let (foo:int->int) = fun x:int -> x;
+let foo:int->int = fun x:int -> x;
 let foo x:int = x in foo 1;
 let foo x:t = match x with
-    A n -> n
-    |B b -> 0
+    | A n -> n
+    | B b -> 0
 in foo (A 1);

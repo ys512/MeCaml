@@ -1,4 +1,4 @@
-let word_size = 32
+let word_size = 64
 
 let size_obj x =
   if Obj.is_int x then 1
@@ -27,7 +27,7 @@ let rec aligned_copy x wx bx y wy w b =
     else
       if bx + b < word_size then
         Obj.set_field y wy (Obj.repr (
-          (Obj.magic (Obj.field x wx):int) lsl bx
+          (Obj.obj (Obj.field x wx):int) lsl bx
         ))
       else
         aligned_copy x wx bx y wy 1 0
@@ -35,8 +35,8 @@ let rec aligned_copy x wx bx y wy w b =
     begin
       let rx = word_size - bx in
       Obj.set_field y wy (Obj.repr (
-        (Obj.magic (Obj.field x wx):int) lsl bx lxor
-        ((Obj.magic (Obj.field x (wx+1)):int) lsr rx) lsl bx
+        (Obj.obj (Obj.field x wx):int) lsl bx lxor
+        ((Obj.obj (Obj.field x (wx+1)):int) lsr rx) lsl bx
       ));
       aligned_copy x (wx+1) bx y (wy+1) (w-1) b
     end
@@ -57,22 +57,22 @@ let copy x wx bx y wy by w b =
       let b' = (b_tot - ry) mod word_size in
       if bx < by then (
         Obj.set_field y wy (Obj.repr (
-          ((Obj.magic (Obj.field y wy):int) lsr ry) lsl ry lxor
-          ((Obj.magic (Obj.field x wx):int) lsl bx) lsr by
+          ((Obj.obj (Obj.field y wy):int) lsr ry) lsl ry lxor
+          ((Obj.obj (Obj.field x wx):int) lsl bx) lsr by
         ));
         aligned_copy x wx (bx+ry) y (wy+1) w' b'
       )
       else 
         if rx > b_tot then(
           Obj.set_field y wy (Obj.repr (
-            ((Obj.magic (Obj.field y wy):int) lsr ry) lsl ry lxor
-            ((Obj.magic (Obj.field x wx):int) lsl bx) lsr by
+            ((Obj.obj (Obj.field y wy):int) lsr ry) lsl ry lxor
+            ((Obj.obj (Obj.field x wx):int) lsl bx) lsr by
           )))
         else(
           Obj.set_field y wy (Obj.repr (
-            ((Obj.magic (Obj.field y wy):int) lsr ry lsl ry) lxor
-            ((Obj.magic (Obj.field x wx):int) lsl bx lsr by) lxor
-            ((Obj.magic (Obj.field x (wx+1)):int) lsr (rx+by))
+            ((Obj.obj (Obj.field y wy):int) lsr ry lsl ry) lxor
+            ((Obj.obj (Obj.field x wx):int) lsl bx lsr by) lxor
+            ((Obj.obj (Obj.field x (wx+1)):int) lsr (rx+by))
           ));
           aligned_copy x (wx+1) (ry-rx) y (wy+1) w' b')
 
@@ -90,30 +90,30 @@ let copy x wx bx y wy by w b =
       if bx < by then
         begin
           Obj.set_field y wy (Obj.repr (
-            ((Obj.magic (Obj.field y wy):int) lsr ry) lsl ry lxor
-            ((Obj.magic (Obj.field x wx):int) lsl bx) lsr by
+            ((Obj.obj (Obj.field y wy):int) lsr ry) lsl ry lxor
+            ((Obj.obj (Obj.field x wx):int) lsl bx) lsr by
           ));
           for i = 1 to w do
-            let left = (Obj.magic (Obj.field x (wx+i-1)):int) lsl (bx+ry) in
-            let right = (Obj.magic (Obj.field x (wx+i)):int) lsr (by-bx) in
+            let left = (Obj.obj (Obj.field x (wx+i-1)):int) lsl (bx+ry) in
+            let right = (Obj.obj (Obj.field x (wx+i)):int) lsr (by-bx) in
             Obj.set_field y (wy+i) (Obj.repr (left lxor right))
           done
         end
       else
         begin
           Obj.set_field y wy (Obj.repr (
-            ((Obj.magic (Obj.field y wy):int) lsr ry lsl ry) lor
-            ((Obj.magic (Obj.field x wx):int) lsl bx lsr by) lor
-            ((Obj.magic (Obj.field x (wx+1)):int) lsr (bx-by))
+            ((Obj.obj (Obj.field y wy):int) lsr ry lsl ry) lor
+            ((Obj.obj (Obj.field x wx):int) lsl bx lsr by) lor
+            ((Obj.obj (Obj.field x (wx+1)):int) lsr (bx-by))
           ));
           for i = 1 to w do
-            let left = (Obj.magic (Obj.field x (wx+i)):int) lsl (by-bx) in
-            let right = (Obj.magic (Obj.field x (wx+i+1)):int) lsr (bx+ry) in
+            let left = (Obj.obj (Obj.field x (wx+i)):int) lsl (by-bx) in
+            let right = (Obj.obj (Obj.field x (wx+i+1)):int) lsr (bx+ry) in
             Obj.set_field y (wy+i) (Obj.repr (left lxor right))
           done
         end
       if bx + by < word_size then
-        let residue = ((Obj.magic (Obj.field x (i-1))):int) lsl r in
+        let residue = ((Obj.obj (Obj.field x (i-1))):int) lsl r in
         Obj.set_field y (wy + wx + 1) (Obj.repr residue);
       done *)
 

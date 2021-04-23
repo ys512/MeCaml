@@ -37,14 +37,15 @@ start:
 | list(tagdef) list(typedef) list(compdef) EOF	{ ($1, $2, $3) }
 
 tagdef:
-| TAG x = ID EQ spec = tag_spec	SEMICOLON	{ Tagdef (x, spec) }
+| TAG x = ID EQ spec = tag_spec	SEMICOLON	{ (x, spec) }
 
 typedef:
-| TYPE x = ID EQ spec = type_spec SEMICOLON	{ Typedef (x, spec) }
+| TYPE x = ID EQ spec = type_spec SEMICOLON	{ (x, spec) }
 
 compdef:
-| LET LPAREN ID COLON t = type_spec RPAREN EQ c = comp SEMICOLON    { Typed (c, t) }
-| c = comp SEMICOLON                        { c }
+| LET x = ID COLON t = type_spec EQ c = comp SEMICOLON      { (x, Typed (c, t)) }
+| LET x = ID EQ c = comp SEMICOLON                          { (x, c) }
+| c = comp SEMICOLON                                        { ("_", c) }
 
 tag_spec:
 | x = ID								  	{ Var x }
@@ -78,7 +79,8 @@ expr:
 | expr bop expr								{ Bop ($2, $1, $3) }
 
 t_cases:
-| separated_nonempty_list(VBAR, t_case)  	{ $1 }
+| separated_nonempty_list(VBAR, t_case)  	    { $1 }
+| VBAR separated_nonempty_list(VBAR, t_case)    { $2 }
 
 t_case:
 | p = LABEL ARROW t = type_spec 			{ (p, t) }
@@ -106,7 +108,8 @@ typed_var:
 x = ID COLON t = type_spec                  { (x, t) }
 
 c_cases:
-| separated_nonempty_list(VBAR, c_case)  	{ $1 }
+| separated_nonempty_list(VBAR, c_case)  	    { $1 }
+| VBAR separated_nonempty_list(VBAR, c_case)  	{ $2 }
 
 c_case:
 | p = comp_pattern ARROW c = comp 			{ (p, c) }

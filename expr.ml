@@ -6,7 +6,7 @@ type evalue = EInt of int | EBool of bool
 
 let rec log x = if x <= 1 then 0 else log (x/2) + 1
 
-let word_size = 32
+let word_size = 64
 
 let bits x = if x <= 1 then 1 else log (x-1) + 1
 

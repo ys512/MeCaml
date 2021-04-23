@@ -54,7 +54,7 @@ type comp =
 type tag_expr = Var of var | Tagset of tag list 
 	| Sum of tag_expr * tag_expr | Prod of tag_expr * tag_expr
 
-type tagdef = Tagdef of var * tag_expr
-type typedef = Typedef of var * type_expr
-type compdef = comp
+type tagdef = var * tag_expr
+type typedef = var * type_expr
+type compdef = var * comp
 type prog = tagdef list * typedef list * compdef list

@@ -43,15 +43,13 @@ and str_type (t:ntype) =
   | _ -> failwith "unsupported type!"
 
 let rec str_list l ppf = 
-  List.fold_left (fun s x -> s ^ (ppf x)) "[" l ^ "]"
+  sprintf "[%s]" (String.concat "" (List.map ppf l))
 
 let print_type_env () = 
-  print_string "TYPE ENV: \n";
-  print_string (str_list !Env.type_env (fun (x, t) -> x ^ ": " ^ (str_type t) ^ "\n"));
-  print_newline ()
+  printf "TYPE ENV: \n[%s]\n"
+  (String.concat "\n" (List.map (fun (x, def) -> sprintf "%s: %s" x (str_type def)) (Env.get_type())))
+  
 
 let print_tag_env () = 
-  print_string "TAG ENV: \n";
-  print_string (str_list !Env.tag_env (
-    fun (a, ts) -> a ^ " : " ^ str_list ts (fun x -> x ^ " ") ^ "\n"));
-  print_newline ()
+  printf "TAG ENV: \n[%s]\n"
+  (String.concat "\n" (List.map (fun (x, def) -> sprintf "%s: %s" x (String.concat " " def)) (Env.get_tag())))
