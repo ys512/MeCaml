@@ -2,20 +2,9 @@
   ($x (block (tag 0) 0))
   ($y (apply (global $Mem $combine) (block (tag 0) 0) 0 1 (block (tag 0) 3) 1 0))
   ($z (apply (global $Mem $combine) (block (tag 0) 1) 0 1 (block (tag 0) 0) 0 1))
-  ($w (let ($_aux_1 (apply (global $Mem $combine) (block (tag 0) 0) 0 1 (block (tag 0) 1) 1 0)) (
-      let ($_aux_5 (apply (global $Mem $split) $_aux_1 0 1 1 0)) (
-          let ($_aux_6 (field 0 $_aux_5)) (
-              let ($_aux_7 (field 1 $_aux_5)) (
-                  switch (field 0 $_aux_6) 
-                  (0 (let ($n $_aux_7) $n)) 
-                  (_ (let ($_aux_2 (apply (global $Mem $split) $_aux_1 0 1 0 1)) (
-                      let ($_aux_3 (field 0 $_aux_2)) (
-                          let ($_aux_4 (field 1 $_aux_2)) (
-                              switch (field 0 $_aux_3) 
-                              (1 (let ($b $_aux_4) (block (tag 0) 2))) 
-                              (_ (apply (global $Stdlib $exit) 1)))))))))))))
+  ($w (let ($_aux_1 (apply (global $Mem $combine) (block (tag 0) 0) 0 1 (block (tag 0) 1) 1 0)) (let ($_aux_5 (apply (global $Mem $split) $_aux_1 0 1 1 0)) (let ($_aux_6 (field 0 $_aux_5)) (let ($_aux_7 (field 1 $_aux_5)) (switch (field 0 $_aux_6) (0 (let ($n $_aux_7) $n)) (_ (let ($_aux_2 (apply (global $Mem $split) $_aux_1 0 1 0 1)) (let ($_aux_3 (field 0 $_aux_2)) (let ($_aux_4 (field 1 $_aux_2)) (switch (field 0 $_aux_3) (1 (let ($b $_aux_4) (block (tag 0) 2))) (_ (apply (global $Stdlib $exit) 1)))))))))))))
   ($foo (lambda ($x) $x))
   (_ (let ($foo (lambda ($x) $x)) (apply $foo (block (tag 0) 1))))
-  (_ (let ($foo (lambda ($x) (let ($_aux_1 $x) (let ($_aux_5 (apply (global $Mem $split) $_aux_1 0 1 1 0)) (let ($_aux_6 (field 0 $_aux_5)) (let ($_aux_7 (field 1 $_aux_5)) (switch (field 0 $_aux_6) (0 (let ($n $_aux_7) $n)) (_ (let ($_aux_2 (apply (global $Mem $split) $_aux_1 0 1 0 1)) (let ($_aux_3 (field 0 $_aux_2)) (let ($_aux_4 (field 1 $_aux_2)) (switch (field 0 $_aux_3) (1 (let ($b $_aux_4) (block (tag 0) 0))) (_ (apply (global $Stdlib $exit) 1)))))))))))))) (apply $foo (apply (global $Mem $combine) (block (tag 0) 0) 0 1 (block (tag 0) 1) 1 0))))
-  (_ (apply (global $Stdlib $print_int) (field 0 $w)))
-(export $x $y $z $w $foo))
+  ($v (let ($foo (lambda ($x) (let ($_aux_1 $x) (let ($_aux_5 (apply (global $Mem $split) $_aux_1 0 1 1 0)) (let ($_aux_6 (field 0 $_aux_5)) (let ($_aux_7 (field 1 $_aux_5)) (switch (field 0 $_aux_6) (0 (let ($n $_aux_7) $n)) (_ (let ($_aux_2 (apply (global $Mem $split) $_aux_1 0 1 0 1)) (let ($_aux_3 (field 0 $_aux_2)) (let ($_aux_4 (field 1 $_aux_2)) (switch (field 0 $_aux_3) (1 (let ($b $_aux_4) (block (tag 0) 0))) (_ (apply (global $Stdlib $exit) 1)))))))))))))) (apply $foo (apply (global $Mem $combine) (block (tag 0) 0) 0 1 (block (tag 0) 1) 1 0))))
+  (_ (apply (global $Stdlib $print_int) (field 0 $v)))
+(export $x $y $z $w $foo $v))
