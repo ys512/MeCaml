@@ -13,6 +13,11 @@ let comb_len wx bx wy by =
     else 
       wx + wy + 2
 
+let extract_bits x wx off len pos = 
+  assert (off + len < word_size);
+  assert (pos + len < word_size);
+  (((Obj.obj (Obj.field x wx):int) lsr off) lsl (word_size-len)) lsr (word_size-pos-len)
+
 (* Copy from one block to another;
 Parameters:
 x: block to copy from;
@@ -25,18 +30,25 @@ let rec aligned_copy x wx bx y wy w b =
   if w <= 0 then
     if b <= 0 then ()
     else
-      if bx + b < word_size then
+      let rx = word_size - bx in
+      let rb = word_size - b in
+      if b < rx then
         Obj.set_field y wy (Obj.repr (
-          (Obj.obj (Obj.field x wx):int) lsl bx
+          (extract_bits  lxor
+          ((Obj.obj (Obj.field x wx):int) lsl (rx-b)) lsr rb
         ))
       else
-        aligned_copy x wx bx y wy 1 0
+        Obj.set_field y wy (Obj.repr (
+          ((Obj.obj (Obj.field y wy):int) lsr b) lsl b lxor
+          ((Obj.obj (Obj.field x (wx+1)):int) lsl (rb+rx)) lsr rb lxor
+          (Obj.obj (Obj.field x wx):int) lsr bx
+        ))
   else
     begin
       let rx = word_size - bx in
       Obj.set_field y wy (Obj.repr (
-        (Obj.obj (Obj.field x wx):int) lsl bx lxor
-        ((Obj.obj (Obj.field x (wx+1)):int) lsr rx) lsl bx
+        (Obj.obj (Obj.field x wx):int) lsr bx lxor
+        (Obj.obj (Obj.field x (wx+1)):int) lsl rx
       ));
       aligned_copy x (wx+1) bx y (wy+1) (w-1) b
     end
@@ -53,24 +65,36 @@ let copy x wx bx y wy by w b =
       let ry = word_size - by in
       let rx = word_size - bx in
       let b_tot = w * word_size + b in
-      let w' = (b_tot - ry) / word_size in
-      let b' = (b_tot - ry) mod word_size in
+      if b_tot < ry then
+        let rb = word_size - b_tot in
+        let x_copy = 
+        if b_tot < rx then
+          (((Obj.obj (Obj.field x wx):int) lsl (rx-b_tot)) lsr rb) lsl by
+        else
+          (((Obj.obj (Obj.field x wx):int) lsl (rx-b_tot)) lsr rb) lsl by
+          Obj.set_field y wy (Obj.repr (
+            ((Obj.obj (Obj.field y wy):int) lsl ry) lsr ry lxor
+            
+            ((Obj.obj (Obj.field y wy):int) lsr (by+b_tot) lsl (by+b_tot))
+          ))
+          
+      let w', b' = Util.bits_to_words word_size in
       if bx < by then (
         Obj.set_field y wy (Obj.repr (
-          ((Obj.obj (Obj.field y wy):int) lsr ry) lsl ry lxor
-          ((Obj.obj (Obj.field x wx):int) lsl bx) lsr by
+          ((Obj.obj (Obj.field y wy):int) lsl ry) lsr ry lxor
+          ((Obj.obj (Obj.field x wx):int) lsr bx) lsl by
         ));
         aligned_copy x wx (bx+ry) y (wy+1) w' b'
       )
       else 
         if rx > b_tot then(
           Obj.set_field y wy (Obj.repr (
-            ((Obj.obj (Obj.field y wy):int) lsr ry) lsl ry lxor
+            ((Obj.obj (Obj.field y wy):int) lsl ry) lsr ry lxor
             ((Obj.obj (Obj.field x wx):int) lsl bx) lsr by
           )))
         else(
           Obj.set_field y wy (Obj.repr (
-            ((Obj.obj (Obj.field y wy):int) lsr ry lsl ry) lxor
+            ((Obj.obj (Obj.field y wy):int) lsl ry lsr ry) lxor
             ((Obj.obj (Obj.field x wx):int) lsl bx lsr by) lxor
             ((Obj.obj (Obj.field x (wx+1)):int) lsr (rx+by))
           ));
