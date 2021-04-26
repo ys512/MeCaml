@@ -12,6 +12,7 @@ type token =
   | SEMICOLON
   | RPAREN
   | REF
+  | REC
   | RCAST
   | RBRACE
   | NEW

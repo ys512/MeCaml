@@ -23,11 +23,11 @@ and str_type (t:ntype) =
   | NMatch (a, cases) -> 
     let string_case (x, t') = sprintf "|%s->%s" x (str_type t') in
     sprintf "(match %s with %s )" a (String.concat " " (List.map string_case cases)) 
-  | NIf (expr, t1, t2) ->
+  (* | NIf (expr, t1, t2) ->
     let e_s = str_expr expr in
     let t1_s = str_type t1 in
     let t2_s = str_type t2 in
-     "(if " ^ e_s ^ " then " ^ t1_s ^ " else " ^ t2_s ^ ")"
+     "(if " ^ e_s ^ " then " ^ t1_s ^ " else " ^ t2_s ^ ")" *)
   | NRef t' ->
      "ref " ^ str_type t'
   | NAlign t' ->

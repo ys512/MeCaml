@@ -1,13 +1,13 @@
 (*normal type*)
-type bop = GT | LT | EQ
+type bop = GT | LT | EQ | ADD | SUB | MUL | DIV
 
 type ntype = 
+	| NVar of string
   | NUnit 
 	| NBool 
-	| NInt 
+	| NInt
 	| NTag of string
 	| NMatch of string * (string * ntype) list
-	| NIf of nexpr * ntype * ntype
 	| NRef of ntype 
 	| NAlign of ntype
 	| NProd of ntype * ntype 

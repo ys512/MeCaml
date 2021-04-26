@@ -5,9 +5,17 @@ let rec parse_curry args body =
     match args with
     | [] -> body
     | (x,t)::tail -> Lambda (x, t, parse_curry tail body)
+
+
+let rec parse_rec args body t_body = 
+    match args with
+    | [] -> body, t_body
+    | (x,t)::tail -> 
+        let c_tail, t_tail = parse_rec tail body t_body in
+        Lambda (x, t, c_tail), TFun (t, t_tail)
 %}
 
-%token EOF TYPE TAG LET IN
+%token EOF TYPE TAG LET REC IN
 %token BOOLTYPE INTTYPE
 %token LPAREN RPAREN LBRACE RBRACE LCAST RCAST
 %token ADD SUB MUL DIV
@@ -97,8 +105,12 @@ comp:
 | NEW c = comp								{ New c }
 | FUN x = ID COLON t = type_spec ARROW c = comp    { Lambda (x, t, c) }
 | LET x = ID EQ c1 = comp IN c2 = comp      { Let (x, c1, c2) }
-| LET x = ID COLON t = type_spec EQ c1 = comp IN c2 = comp      { Let (x, Typed(c1, t), c2) }
-| LET f = ID args = list(typed_var) EQ c1 = comp IN c2 = comp   { Let (f, parse_curry args c1, c2) }
+| LET x = ID COLON t = type_spec EQ c1 = comp IN c2 = comp          { Let (x, Typed(c1, t), c2) }
+| LET f = ID args = list(typed_var) EQ c1 = comp IN c2 = comp       { Let (f, parse_curry args c1, c2) }
+| LET f = ID LPAREN args = list(typed_var) RPAREN COLON t = type_spec EQ c1 = comp IN c2 = comp
+                                                                    { Let (f, parse_curry args (Typed (c1, t)), c2) }
+| LET REC f = ID LPAREN args = list(typed_var) RPAREN COLON t = type_spec EQ c1 = comp IN c2 = comp   
+                                                                    { LetRec (f, parse_rec args c1 t, c2) }
 | MATCH c = comp WITH cases = c_cases	    { Match (c, cases) }
 | f = comp arg = comp				        { App (f, arg) }
 | c = comp COLON t = type_spec              { Typed (c, t) }

@@ -1,0 +1,9 @@
+(module
+  ($x (let (
+      rec (
+        $f (lambda ($x) (lambda ($y) (if (== $x 0) $y (+ (apply (apply $f (- $x 1)) $y) 1))))
+      )
+    ) (apply (apply $f 2) 2))
+  )
+  (_ (apply (global $Stdlib $print_int) $x))
+(export))

@@ -24,15 +24,6 @@ and size_type t =
 	| NInt -> word_size
 	| NRef _ -> word_size
 	| NTag tag -> size_tag tag
-	| NMatch(tag, cases) -> 
-		let s_tag = size_tag tag in
-		let s_cases = size_cases cases in
-		s_tag + s_cases
-	| NIf(e, t1, t2) ->
-		let s1 = size_type t1 in
-		let s2 = size_type t2 in
-		max s1 s2
-	| NAlign t -> ((size_type t - 1) / word_size + 1) * word_size
 	| NProd (t1, t2) ->
 		let s1 = size_type t1 in
 		let s2 = size_type t2 in
@@ -50,4 +41,13 @@ let rec eval (ne:nexpr) =
 			| GT, EInt n1, EInt n2 -> EBool (n1 > n2)
 			| LT, EInt n1, EInt n2 -> EBool (n1 < n2)
 			| EQ, EInt n1, EInt n2 -> EBool (n1 = n2)
-			| _, _, _ -> failwith "error in expression evaluation"
+			| ADD, EInt n1, EInt n2 -> EInt (n1 + n2)
+			| SUB, EInt n1, EInt n2 -> EInt (n1 - n2)
+			| MUL, EInt n1, EInt n2 -> EInt (n1 * n2)
+			| DIV, EInt n1, EInt n2 -> EInt (n1 / n2)
+			| _, _, _ -> failwith "bop error in expression evaluation"
+
+let eval_bool ne =
+	match eval ne with
+	| EBool b -> b
+	| _ -> failwith "expression must evaluate to bool"

@@ -1,18 +1,18 @@
 (* Parsed Syntax Tree *)
-
-type bop = GT | LT | EQ
-
+type var = string
+type tag_name = string
+type type_name = string
 type tag = string
 
-type var = string
+type bop = GT | LT | EQ
 
 type type_expr = 
   | TUnit 
 	| TInt 
 	| TBool 
 	
-	| TVar of var
-	| TTag of var
+	| TVar of type_name
+	| TTag of tag_name
 	
 	| TProd of type_expr * type_expr
 	
@@ -21,7 +21,7 @@ type type_expr =
 
 	| TFun of type_expr * type_expr
 	
-	| TRef of type_expr 
+	| TRef of type_expr
 	| TAlign of type_expr
 	| TIf of expr * type_expr * type_expr
 
@@ -39,6 +39,7 @@ type comp =
 	| Block of tag * comp
 	
 	| Let of var * comp * comp
+	| LetRec of var * (comp * type_expr) * comp
 	| Lambda of var * type_expr * comp
 	| App of comp * comp
 	| Match of comp * (comp * comp) list

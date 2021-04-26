@@ -1,8 +1,16 @@
-let tag_env : ((string * string list) list) ref = ref []
+type tag_name = string
 
-let type_env : ((string * Ntype.ntype) list) ref = ref []
+type tag = string
 
-let typing_env : ((string * Ntype.ntype) list) ref = ref []
+type type_name = string
+
+type var = string
+
+let tag_env : ((tag_name * tag list) list) ref = ref []
+
+let type_env : ((type_name * Ntype.ntype) list) ref = ref []
+
+let typing_env : ((var * Ntype.ntype) list) ref = ref []
 
 let aux_ctr = ref 0
 
