@@ -122,6 +122,12 @@ and check_let x c1 c2 target typing_env =
 	let checked_c2 = check_comp c2 target ((x, snd checked_c1)::typing_env) in
 	Tst.Let (x, checked_c1, checked_c2), snd checked_c2
 
+and check_letrec f t c1 c2 target typing_env = 
+	let nt = norm t in
+	let checked_c1 = check_comp c1 (Some nt) ((f,nt)::typing_env) in
+	let checked_c2 = check_comp c2 target ((f,nt)::typing_env) in
+	Tst.LetRec (f, checked_c1, checked_c2), snd checked_c2
+
 and	check_comp (c:Pst.comp) target (typing_env:(string * ntype) list):Tst.tcomp =
 	match c with
 		| Pst.Unit 						-> (Tst.Unit, 	match_type target NUnit)
