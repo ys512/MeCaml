@@ -21,6 +21,7 @@ rule lex = parse
   | "type"    { TYPE }
   | "tag"     { TAG }
   | "let"     { LET }
+  | "rec"     { REC }
   
   | "bool"    { BOOLTYPE }
   | "int"     { INTTYPE }
