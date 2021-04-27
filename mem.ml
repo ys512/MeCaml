@@ -1,4 +1,4 @@
-let word_size = 63
+let word_size = Sys.word_size
 let size_obj x =
   if Obj.is_int x then 1
   else Obj.size x

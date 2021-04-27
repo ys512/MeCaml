@@ -138,7 +138,8 @@ let mk_export seq =
 let translate_seq seq = 
   sprintf "(module
   %s
-  (_ (apply (global $Stdlib $print_int) (field 0 $v)))
+  (_ (apply (global $Stdlib $print_int) (field 0 $w)))
+  (_ (apply (global $Stdlib $print_endline) \"\"))
 (export %s))"
   (String.concat "\n  " (List.map translate_compdef seq))
   (String.concat " " (mk_export seq))
