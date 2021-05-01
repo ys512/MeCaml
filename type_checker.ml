@@ -2,26 +2,57 @@ open Util
 open Ntype
 open Norm
 open Expr
+open Printf
 
-let eq t1 t2 = (t1 = t2)
-	
+let rec eq t1 t2 = 
+	if t1 = t2 then true
+	else false
+		(* match t1, t2 with
+		| NVar t, _ -> eq (Env.lookup_type t) t2
+		| _, NVar t -> eq t1 (Env.lookup_type t)
+		| NRef ta, NRef tb -> eq ta tb
+		| NAlign ta, NAlign tb -> eq ta tb
+		| NProd (t1a, t1b), NProd (t2a, t2b) -> 
+			(eq t1a t2a) && (eq t1b t2b)
+		| NFun (t1a, t1b), NFun (t2a, t2b) -> 
+			(eq t1a t2a) && (eq t1b t2b)
+		| NMatch (ta1, cases1), NMatch (ta2, cases2) ->
+			(ta1 = ta2 && try 
+				List.for_all2
+				(fun (a, t1a) (b, t2b)-> a = b && eq t1a t2b) 
+				cases1 cases2
+			with Invalid_argument _ -> false)
+		| _ -> false *)
+
+let fail_typechecker msg = ksprintf failwith "Type_checker: %s\n" msg
+
+let constructor_mismatch t constr = 
+	sprintf "constructor mismatch: expecting type %s, given constructor %s" (Pprint.str_type t) constr
+
+let type_mismatch t1 t2 =
+	sprintf "type mismatch: expecting type %s, given type %s" (Pprint.str_type t1) (Pprint.str_type t2)
+
 let match_type t1 t2 =
 	match t1 with
-	| Some t -> if eq t t2 then t else failwith "incompatible types"
+	| Some t -> if eq t t2 then t 
+		else fail_typechecker (type_mismatch t t2)
 	| None -> t2
 
 let check_var x target typing_env = 
-	(Tst.Var x,  match_type target (List.assoc x typing_env))
+	try
+		let tx = List.assoc x typing_env in
+		(Tst.Var x, match_type target tx)
+	with Not_found -> ksprintf fail_typechecker "undefined variable %s" x
 
 let check_tag a target = 
 		match target with
 		| Some (NTag ta) -> 
-			let tagset = List.assoc ta !Env.tag_env in
+			let tagset = Env.lookup_tag ta in
 			if List.mem a tagset then 
 				(Tst.Tag a, NTag ta) 
 			else failwith (a ^ "not in tagset" ^ ta)
-		| None -> failwith "unable to determine tagset"
-		| _ -> failwith "incompatible types"
+		| None -> ksprintf fail_typechecker "unable to determine tagset of tag %s\n" a
+		| Some t -> fail_typechecker (constructor_mismatch t "Tag")
 
 (* Here could be improved, could combine env inference with typing checking, left as extension *)
 let rec extract_pattern pattern target = 
@@ -32,21 +63,21 @@ let rec extract_pattern pattern target =
 	| Pst.Block (a, c) , NMatch (_, cases) -> let t = find a cases "tag" in extract_pattern c t
 	| Pst.Align c, NAlign t -> extract_pattern c t
 	| Pst.New c, NRef t -> extract_pattern c t
-	| _ -> failwith "inconsistent match"
+	| _ -> fail_typechecker "malformed pattern in match expression"
 
 let rec check_match c cases target typing_env = 
 	let cc, tc = check_comp c None typing_env in
 	let check_case (pattern, result) target = 
 		let e_pat = extract_pattern pattern tc in
 		let c_pat = check_comp pattern (Some tc) e_pat in
-		let c_res = check_comp result target (typing_env@e_pat) in
+		let c_res = check_comp result target (e_pat@typing_env) in
 		(c_pat, c_res) in
 	let rec check_cases cases target acc = 
 		match cases with
 		| [] -> 
 			( match target with 
 			| Some t -> (acc, t)
-			| None -> failwith "match needs at least one case")			
+			| None -> fail_typechecker "match needs at least one case")			
 		| head::tail -> 
 			let checked_head = check_case head target in
 			let t_head =  snd (snd checked_head) in
@@ -63,7 +94,7 @@ and check_align c target typing_env =
 	| None ->
 		let (cc, tc) = check_comp c None typing_env in
 		(Tst.Align (cc, tc), NAlign tc)
-	| _ -> failwith "incompatible types"
+	| Some t -> fail_typechecker (constructor_mismatch t "Align")
 
 and check_pair c1 c2 target typing_env = 
 	match target with
@@ -75,7 +106,7 @@ and check_pair c1 c2 target typing_env =
 		let (cc1, tc1) = check_comp c1 None typing_env in
 		let (cc2, tc2) = check_comp c2 None typing_env in 
 		(Tst.Pair ((cc1, tc1), (cc2, tc2)), NProd(tc1, tc2))
-	| _ -> failwith "incompatible types"
+	| Some t -> fail_typechecker (constructor_mismatch t "Pair")
 
 and check_block a c target typing_env = 
 	match target with
@@ -83,7 +114,8 @@ and check_block a c target typing_env =
 		let ca = check_tag a (Some (NTag ta)) in 
 		let cc = check_comp c (Some (List.assoc a cases)) typing_env in
 		(Tst.Block (ca, cc), NMatch(ta, cases))
-	| _ -> failwith "incompatible types"
+	| Some t -> fail_typechecker (constructor_mismatch t "Block")
+	| None -> ksprintf fail_typechecker "unable to determine tagset of tag %s" a
 
 and check_new c target typing_env = 
 	match target with
@@ -93,21 +125,21 @@ and check_new c target typing_env =
 	| None ->
 		let (cc, tc) = check_comp c None typing_env in
 		(Tst.New (cc, tc), NRef tc)
-	| _ -> failwith "incompatible types"
+	| Some t -> fail_typechecker (constructor_mismatch t "New")
 
-and check_lambda x t c target typing_env = 
-	let tx = norm t in
+and check_lambda x t_arg c target typing_env = 
+	let tx = norm t_arg in
 	match target with
 	| Some (NFun (tx', tc)) -> 
 		if tx = tx' then
 			let checked_c = check_comp c (Some tc) ((x, tx)::typing_env) 
 			in (Tst.Lambda (x, checked_c), NFun (tx, tc))
 		else
-			failwith "incompatible types"
+			fail_typechecker (type_mismatch tx tx')
 	| None -> 
 		let (cc, tc) = check_comp c None ((x, tx)::typing_env) 
 			in (Tst.Lambda (x, (cc, tc)), NFun (tx, tc))
-	| _ -> failwith "incompatible types"
+	| Some t -> fail_typechecker (constructor_mismatch t "Lambda")
 
 and check_app f arg target typing_env = 
 	let (cf, tf) = check_comp f None typing_env in
@@ -140,6 +172,7 @@ and	check_comp (c:Pst.comp) target (typing_env:(string * ntype) list):Tst.tcomp 
 		| Pst.Block (a, c1)   -> check_block a c1 target typing_env
 		| New c1 							-> check_new c1 target typing_env
 		| Let (x, c1, c2)			-> check_let x c1 c2 target typing_env
+		| LetRec (f, (c1, t), c2)	-> check_letrec f t c1 c2 target typing_env
 		| Lambda (x, t, c)		-> check_lambda x t c target typing_env
 		| Match (c, cases) 		-> check_match c cases target typing_env
 		| App(f, arg) 				-> check_app f arg target typing_env

@@ -6,8 +6,6 @@ type evalue = EInt of int | EBool of bool
 
 let rec log x = if x <= 1 then 0 else log (x/2) + 1
 
-let word_size = 64
-
 let bits x = if x <= 1 then 1 else log (x-1) + 1
 
 let size_tag tag = 
@@ -21,8 +19,8 @@ and size_type t =
 	match t with
 	| NUnit -> 0
 	| NBool -> 1
-	| NInt -> word_size
-	| NRef _ -> word_size
+	| NInt -> Sys.word_size
+	| NRef _ -> Sys.word_size
 	| NTag tag -> size_tag tag
 	| NMatch(tag, cases) -> 
 		let s_tag = size_tag tag in
@@ -37,6 +35,7 @@ and size_type t =
 		let s1 = size_type t1 in
 		let s2 = size_type t2 in
 		s1 + s2
+	| NFun _ -> Sys.word_size
 	| _ -> failwith "type cannot be sized"
 
 let rec eval (ne:nexpr) = 
