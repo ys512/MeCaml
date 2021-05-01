@@ -4,7 +4,7 @@ let size_obj x =
   if Obj.is_int x then 1
   else Obj.size x
 
-let bits_to_words b = b/word_size, b mod word_size
+let bits_to_words b = (b-1)/word_size + 1
 
 let comb_len wx bx wy by = 
   if bx + by = 0 then
@@ -17,8 +17,8 @@ let comb_len wx bx wy by =
 
 let extract_bits x wx off len pos = 
   (* Printf.printf "off: %d, len: %d, pos: %d\n" off len pos; *)
-  assert (off + len <= word_size);
-  assert (pos + len <= word_size);
+  (* assert (off + len <= word_size);
+  assert (pos + len <= word_size); *)
   (((Obj.obj (Obj.field x wx):int) lsr off) lsl (word_size-len)) lsr (word_size-pos-len)
 
 (* Copy from one block to another;
@@ -77,7 +77,9 @@ let copy x wx bx y wy by w b =
           extract_bits x (wx+1) 0 (b_tot-rx) (by+rx) in
       Obj.set_field y wy (Obj.repr (y_copy lxor x_copy))
     else
-      let w', b' = bits_to_words (b_tot-ry) in
+      let b_rem = b_tot-ry in
+      let w' = b_rem/word_size in
+      let b' = b_rem mod word_size in
       let y_copy = extract_bits y wy 0 by 0 in
       if ry <= rx then
         begin
@@ -93,6 +95,14 @@ let copy x wx bx y wy by w b =
           Obj.set_field y wy (Obj.repr (x_copy lxor y_copy));
           aligned_copy x (wx+1) (ry-rx) y (wy+1) w' b'
         end
+
+let rec copy_words x wx y wy w = 
+  if w = 0 then ()
+  else
+    begin
+      Obj.set_field y wy (Obj.field x wx);
+      copy_words x (wx+1) y (wy+1) (w-1)
+    end
 
 
 (* let copy x wx bx y wy by w b = 
@@ -142,13 +152,16 @@ let combine x wx bx y wy by =
   copy x 0 0 o 0 0 wx bx; 
   copy y 0 0 o wx bx wy by; o
 
-let split o wx bx wy by = 
+let extract x wx bx wy by = 
   (* Printf.printf "Split: wx: %d, bx: %d, wy: %d, by: %d\n" wx bx wy by; *)
-  let x = Obj.new_block 0 (if bx>0 then wx+1 else wx) in
   let y = Obj.new_block 0 (if by>0 then wy+1 else wy) in
-  copy o 0 0 x 0 0 wx bx;
-  copy o wx bx y 0 0 wy by;
-  (x, y)
+  copy x wx bx y 0 0 wy by; y
+
+let resize x b = 
+  let wy = bits_to_words b in
+  let y = Obj.new_block 0 wy in
+  let wx = Obj.size x in
+  copy_words x 0 y 0 wx; y
 
 let rec str_field x pos acc = 
   if pos < 0 then acc

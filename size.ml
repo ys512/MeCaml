@@ -20,10 +20,10 @@ and size_type t name =
 	match t with
 	| NUnit -> SInt 0
 	| NBool -> SInt 1
-	| NInt -> SInt Sys.word_size
+	| NInt -> SInt Sys.int_size
 	| NTag tag -> SInt (size_tag tag)
-	| NRef _ -> SInt Sys.word_size
-  | NFun _ -> SInt Sys.word_size
+	| NRef _ -> SInt Sys.int_size
+  | NFun _ -> SInt Sys.int_size
   | NVar x -> if x=name then SVar x else Env.lookup_size x
 	| NProd (t1, t2) ->
 		let s1 = size_type t1 name in

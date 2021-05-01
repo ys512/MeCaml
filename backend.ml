@@ -55,7 +55,6 @@ let translate_operator op =
   | LT -> "<"
   | EQ -> "=="
   
-
 let rec translate ((comp, t):Tst.tcomp) = 
   match comp, t with
   | Unit, NUnit           -> translate_unit
@@ -68,7 +67,7 @@ let rec translate ((comp, t):Tst.tcomp) =
   | Bop (op, c1, c2), _   -> translate_bop op c1 c2
   | If (c1, c2, c3), _    -> translate_if c1 c2 c3
   | Pair (c1, c2), _      -> translate_pair c1 c2
-  | Block (a, c), _       -> translate_block a c
+  | Block (a, c), _       -> translate_block a c (Expr.size_type t)
   | Let (x, c1, c2), _    -> translate_let x c1 c2
   | LetRec (x, c1 ,c2), _ -> translate_letrec x c1 c2
   | Lambda (x, c), _      -> translate_lambda x c
@@ -82,7 +81,7 @@ and translate_bop op c1 c2 =
 
 and translate_if c1 c2 c3 =
   sprintf "(if %s %s %s)" 
-  (unbox (translate c1)) (unbox (translate c2)) (unbox (translate c3))
+  (unbox (translate c1)) (translate c2) (translate c3)
 
 and translate_pair (c1, t1) (c2, t2) = 
   let w1, b1 = Util.bits_to_words (Expr.size_type t1) in
@@ -90,7 +89,8 @@ and translate_pair (c1, t1) (c2, t2) =
   sprintf "(apply (global $Mem $combine) %s %d %d %s %d %d)" 
   (translate (c1, t1)) w1 b1 (translate (c2, t2)) w2 b2 
 
-and translate_block a c = translate_pair a c
+and translate_block a c size = 
+sprintf "(apply (global $Mem $resize) %s %d)" (translate_pair a c) size
 
 and translate_let x c1 c2 = bind (var x) (translate c1) (translate c2)
 
@@ -119,7 +119,6 @@ and translate_match c cases =
 
 and translate_case comp pattern res cont = 
   match pattern with
-  (* need fixing *)
   | Tst.Tag a, NTag ta -> 
     sprintf "(if (== %s %d) %s %s)" 
       (unbox comp) (pos_of_tag a ta) res cont
@@ -136,21 +135,16 @@ and translate_case comp pattern res cont =
     let tc2 = snd c2 in
     let w1, b1 = Util.bits_to_words (Expr.size_type tc1) in
     let w2, b2 = Util.bits_to_words (Expr.size_type tc2) in
-    let aux_1_2 = new_aux () in
     let aux_1 = new_aux () in
     let aux_2 = new_aux () in
-    let comp_1_2 = 
-        sprintf "(apply (global $Mem $split) %s %d %d %d %d)" comp w1 b1 w2 b2 
-    in
-    let comp_1 = field 0 aux_1_2 in
-    let comp_2 = field 1 aux_1_2 in
+    let comp_1 = 
+      sprintf "(apply (global $Mem $extract) %s %d %d %d %d)" comp 0 0 w1 b1 in
+    let comp_2 = 
+      sprintf "(apply (global $Mem $extract) %s %d %d %d %d)" comp w1 b1 w2 b2 in
     let res_2 = translate_case aux_2 c2 res cont in
-    let res_1 = translate_case aux_1 c1 res_2 cont in
-    bind aux_1_2 comp_1_2 (
-      bind aux_1 comp_1 (
-        bind aux_2 comp_2 res_1
-      )
-    )
+    let trans_2 = bind aux_2 comp_2 res_2 in
+    let res_1 = translate_case aux_1 c1 trans_2 cont in
+    let trans_1 = bind aux_1 comp_1 res_1 in trans_1
   | Tst.Block (a, c), t -> 
     translate_case comp (Tst.Pair(a, c), t) res cont
   | _ -> failwith "translation error"
