@@ -10,7 +10,11 @@ let index e l =
     | hd::tl -> if e = hd then i else idx (i+1) tl
   in idx 0 l
 
+let field n b = sprintf "(field %d %s)" n b
+
 let singleton s = sprintf "(block (tag 0) %s)" s
+
+let unbox s = field 0 s
 
 let aux n = sprintf "$_aux_%d" n
 
@@ -21,8 +25,6 @@ let new_aux_ctr () =
 let new_aux () = 
   aux (new_aux_ctr ())
  let var s = if s = "_" then "_" else sprintf "$%s" s
-
-let field n b = sprintf "(field %d %s)" n b
 
 let bind x cx c = sprintf "(let (%s %s) %s)" x cx c
 
@@ -39,7 +41,18 @@ let translate_bool b = singleton (if b then "0" else "1")
 let translate_var x = var x
 
 let translate_tag a ta = 
-    singleton (string_of_int (pos_of_tag a ta))
+  singleton (string_of_int (pos_of_tag a ta))
+
+let translate_operator op = 
+  match op with
+  | ADD -> "+"
+  | SUB -> "-"
+  | MUL -> "*"
+  | DIV -> "/"
+  | GT -> ">"
+  | LT -> "<"
+  | EQ -> "=="
+  
 
 let rec translate ((comp, t):Tst.tcomp) = 
   match comp, t with
@@ -50,6 +63,8 @@ let rec translate ((comp, t):Tst.tcomp) =
   | Tag a, NTag ta        -> translate_tag a ta
   | New c, _              -> singleton(translate c)
   | Align c, _            -> translate c
+  | Bop (op, c1, c2), _   -> translate_bop op c1 c2
+  | If (c1, c2, c3), _    -> translate_if c1 c2 c3
   | Pair (c1, c2), _      -> translate_pair c1 c2
   | Block (a, c), _       -> translate_block a c
   | Let (x, c1, c2), _    -> translate_let x c1 c2
@@ -57,6 +72,14 @@ let rec translate ((comp, t):Tst.tcomp) =
   | App (c1, c2), _       -> translate_app c1 c2
   | Match (c1, cases), _  -> translate_match c1 cases
   | _                     -> failwith "translation error"
+
+and translate_bop op c1 c2 =
+  sprintf "(%s %s %s)" 
+  (translate_operator op) (unbox (translate c1)) (unbox (translate c2))
+
+and translate_if c1 c2 c3 =
+  sprintf "(if %s %s %s)" 
+  (unbox (translate c1)) (unbox (translate c2)) (unbox (translate c3))
 
 and translate_pair (c1, t1) (c2, t2) = 
   let w1, b1 = Util.bits_to_words (Expr.size_type t1) in
@@ -93,15 +116,15 @@ and translate_case comp pattern res cont =
   match pattern with
   (* need fixing *)
   | Tst.Tag a, NTag ta -> 
-    sprintf "(switch %s (%s %s) (_ %s))" 
-      (field 0 comp) (string_of_int (pos_of_tag a ta)) res cont
+    sprintf "(if (== %s %d) %s %s)" 
+      (unbox comp) (pos_of_tag a ta) res cont
   | Tst.Var x, _ ->
     bind (var x) comp res
   | Tst.Align c, _ ->
     translate_case comp c res cont
   | Tst.New c, _ -> 
     let aux_c = new_aux () in
-    bind aux_c (field 0 comp)
+    bind aux_c (unbox comp)
       (translate_case aux_c pattern res cont)
   | Tst.Pair (c1, c2), _ -> 
     let tc1 = snd c1 in
@@ -138,8 +161,7 @@ let mk_export seq =
 let translate_seq seq = 
   sprintf "(module
   %s
-  (_ (apply (global $Stdlib $print_int) (field 0 $w)))
-  (_ (apply (global $Stdlib $print_endline) \"\"))
+  (_ (apply (global $Mem $debug) $out))
 (export %s))"
   (String.concat "\n  " (List.map translate_compdef seq))
   (String.concat " " (mk_export seq))

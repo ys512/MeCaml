@@ -3,6 +3,8 @@ type tag = string
 
 type var = string
 
+type bop = ADD | SUB | MUL | DIV | GT | LT | EQ
+
 type tcomp = comp * Ntype.ntype
 
 and comp = 
@@ -12,6 +14,9 @@ and comp =
 
   | Var of var
   | Tag of tag
+	
+	| Bop of bop * tcomp * tcomp
+	| If of tcomp * tcomp * tcomp
 
   | Pair of tcomp * tcomp
   | Block of tcomp * tcomp

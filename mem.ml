@@ -149,3 +149,15 @@ let split o wx bx wy by =
   copy o 0 0 x 0 0 wx bx;
   copy o wx bx y 0 0 wy by;
   (x, y)
+
+let rec str_field x pos acc = 
+  if pos < 0 then acc
+  else
+    Printf.ksprintf (str_field x (pos-1)) "%d | %s" (Obj.obj (Obj.field x pos):int) acc
+
+let debug x = 
+  if Obj.is_int x then
+    Printf.printf "Int: %d\n" (Obj.obj x:int)
+  else
+    Printf.printf "Block: %d | %s\n" (Obj.tag x)
+    (str_field x (Obj.size x - 1) "")

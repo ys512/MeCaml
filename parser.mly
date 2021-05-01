@@ -29,6 +29,8 @@ let rec parse_rec args body t_body =
 %token<int> INT
 %token<bool> BOOL
 
+%right ARROW
+%nonassoc LT, GT, EQ
 %left ADD, SUB
 %left MUL, DIV
 
@@ -74,9 +76,9 @@ type_spec:
 | t1 = type_spec ARROW t2 = type_spec		{ TFun (t1, t2) }
 | MATCH x = ID WITH cases = t_cases			{ TMatch (x, cases) }
 | IF e = expr THEN t1 = type_spec ELSE t2 = type_spec	{ TIf (e, t1, t2) }
-| LPAREN type_spec RPAREN					{ $2 }
+| LPAREN t = type_spec RPAREN				{ t }
 
-bop:
+ebop:
 | GT										{ GT }
 | LT										{ LT }
 | EQ										{ EQ }
@@ -84,7 +86,7 @@ bop:
 expr:
 | n = INT									{ Int n }
 | SIZE LPAREN t = type_spec RPAREN 			{ Size t }
-| expr bop expr								{ Bop ($2, $1, $3) }
+| e1 = expr op = ebop e2 = expr             { Bop (op, e1, e2) }
 
 t_cases:
 | separated_nonempty_list(VBAR, t_case)  	    { $1 }
@@ -92,6 +94,15 @@ t_cases:
 
 t_case:
 | p = LABEL ARROW t = type_spec 			{ (p, t) }
+
+cbop:
+| ADD										{ ADD }
+| SUB										{ SUB }
+| MUL										{ MUL }
+| DIV										{ DIV }
+| GT										{ GT }
+| LT										{ LT }
+| EQ										{ EQ }
 
 comp:
 | LPAREN RPAREN								{ Unit }
@@ -103,8 +114,10 @@ comp:
 | a = LABEL c = comp                        { Block (a, c) }
 | LPAREN c1 = comp COMMA c2 = comp RPAREN	{ Pair (c1, c2) }
 | NEW c = comp								{ New c }
-| FUN x = ID COLON t = type_spec ARROW c = comp    { Lambda (x, t, c) }
-| LET x = ID EQ c1 = comp IN c2 = comp      { Let (x, c1, c2) }
+| c1 = comp op = cbop c2 = comp             { Bop (op, c1, c2) }
+| IF c1 = comp THEN c2= comp ELSE c3 = comp { If (c1, c2, c3) }
+| FUN x = ID COLON t = type_spec ARROW c = comp     { Lambda (x, t, c) }
+| LET x = ID EQ c1 = comp IN c2 = comp              { Let (x, c1, c2) }
 | LET x = ID COLON t = type_spec EQ c1 = comp IN c2 = comp          { Let (x, Typed(c1, t), c2) }
 | LET f = ID args = list(typed_var) EQ c1 = comp IN c2 = comp       { Let (f, parse_curry args c1, c2) }
 | LET f = ID LPAREN args = list(typed_var) RPAREN COLON t = type_spec EQ c1 = comp IN c2 = comp

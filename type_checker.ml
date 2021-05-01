@@ -38,6 +38,16 @@ let match_type t1 t2 =
 		else fail_typechecker (type_mismatch t t2)
 	| None -> t2
 
+let convert_bop op =
+	match op with
+	| Pst.ADD -> Tst.ADD
+	| Pst.SUB -> Tst.SUB
+	| Pst.MUL -> Tst.MUL
+	| Pst.DIV -> Tst.DIV
+	| Pst.LT -> Tst.LT
+	| Pst.GT -> Tst.GT
+	| Pst.EQ -> Tst.EQ
+
 let check_var x target typing_env = 
 	try
 		let tx = List.assoc x typing_env in
@@ -65,26 +75,29 @@ let rec extract_pattern pattern target =
 	| Pst.New c, NRef t -> extract_pattern c t
 	| _ -> fail_typechecker "malformed pattern in match expression"
 
-let rec check_match c cases target typing_env = 
-	let cc, tc = check_comp c None typing_env in
-	let check_case (pattern, result) target = 
-		let e_pat = extract_pattern pattern tc in
-		let c_pat = check_comp pattern (Some tc) e_pat in
-		let c_res = check_comp result target (e_pat@typing_env) in
-		(c_pat, c_res) in
-	let rec check_cases cases target acc = 
-		match cases with
-		| [] -> 
-			( match target with 
-			| Some t -> (acc, t)
-			| None -> fail_typechecker "match needs at least one case")			
-		| head::tail -> 
-			let checked_head = check_case head target in
-			let t_head =  snd (snd checked_head) in
-			check_cases tail (Some t_head) (checked_head::acc)
-	in 
-	let c_cases, t_cases = check_cases (List.rev cases) target [] in
-	(Tst.Match ((cc, tc), c_cases), t_cases)
+
+
+
+
+let rec	check_comp (c:Pst.comp) target (typing_env:(string * ntype) list):Tst.tcomp =
+	match c with
+		| Pst.Unit 						-> (Tst.Unit, 	match_type target NUnit)
+		| Pst.Bool b 					-> (Tst.Bool b,	match_type target NBool)
+		| Pst.Int n 					-> (Tst.Int n,  match_type target NInt)
+		| Pst.Var x 					-> check_var x target typing_env
+		| Pst.Tag a 					-> check_tag a target
+		| Pst.Align c1 				-> check_align c1 target typing_env
+		| Pst.Bop (op, c1, c2)-> check_bop op c1 c2 target typing_env
+		| Pst.If (c1, c2, c3)	-> check_if c1 c2 c3 target typing_env
+		| Pst.Pair (c1, c2) 	-> check_pair c1 c2 target typing_env
+		| Pst.Block (a, c1)   -> check_block a c1 target typing_env
+		| New c1 							-> check_new c1 target typing_env
+		| Match (c, cases) 		-> check_match c cases target typing_env
+		| Let (x, c1, c2)			-> check_let x c1 c2 target typing_env
+		| LetRec (f, (c1, t), c2)	-> check_letrec f t c1 c2 target typing_env
+		| Lambda (x, t, c)		-> check_lambda x t c target typing_env
+		| App(f, arg) 				-> check_app f arg target typing_env
+		| Typed(c1, t1) 			-> check_comp c1 (Some (norm t1)) typing_env
 
 and check_align c target typing_env = 
 	match target with
@@ -95,6 +108,23 @@ and check_align c target typing_env =
 		let (cc, tc) = check_comp c None typing_env in
 		(Tst.Align (cc, tc), NAlign tc)
 	| Some t -> fail_typechecker (constructor_mismatch t "Align")
+
+and check_bop (op: Pst.cbop) c1 c2 target typing_env = 
+	match op with
+	| ADD | SUB | MUL| DIV -> 
+		let checked_c1 = check_comp c1 (Some NInt) typing_env in
+		let checked_c2 = check_comp c2 (Some NInt) typing_env in
+		(Tst.Bop (convert_bop op, checked_c1, checked_c2), NInt)
+	| GT | LT | EQ ->
+		let checked_c1 = check_comp c1 (Some NInt) typing_env in
+		let checked_c2 = check_comp c2 (Some NInt) typing_env in
+		(Tst.Bop (convert_bop op, checked_c1, checked_c2), NBool)
+
+and check_if c1 c2 c3 target typing_env = 
+	let checked_c1 = check_comp c1 (Some NInt) typing_env in
+	let checked_c2 = check_comp c2 target typing_env in
+	let checked_c3 = check_comp c2 target typing_env in
+	(Tst.If (checked_c1, checked_c2, checked_c3), snd checked_c2)
 
 and check_pair c1 c2 target typing_env = 
 	match target with
@@ -126,6 +156,28 @@ and check_new c target typing_env =
 		let (cc, tc) = check_comp c None typing_env in
 		(Tst.New (cc, tc), NRef tc)
 	| Some t -> fail_typechecker (constructor_mismatch t "New")
+
+
+and check_match c cases target typing_env = 
+	let cc, tc = check_comp c None typing_env in
+	let check_case (pattern, result) target = 
+		let e_pat = extract_pattern pattern tc in
+		let c_pat = check_comp pattern (Some tc) e_pat in
+		let c_res = check_comp result target (e_pat@typing_env) in
+		(c_pat, c_res) in
+	let rec check_cases cases target acc = 
+		match cases with
+		| [] -> 
+			( match target with 
+			| Some t -> (acc, t)
+			| None -> fail_typechecker "match needs at least one case")			
+		| head::tail -> 
+			let checked_head = check_case head target in
+			let t_head =  snd (snd checked_head) in
+			check_cases tail (Some t_head) (checked_head::acc)
+	in 
+	let c_cases, t_cases = check_cases (List.rev cases) target [] in
+	(Tst.Match ((cc, tc), c_cases), t_cases)
 
 and check_lambda x t_arg c target typing_env = 
 	let tx = norm t_arg in
@@ -160,23 +212,6 @@ and check_letrec f t c1 c2 target typing_env =
 	let checked_c2 = check_comp c2 target ((f,nt)::typing_env) in
 	Tst.LetRec (f, checked_c1, checked_c2), snd checked_c2
 
-and	check_comp (c:Pst.comp) target (typing_env:(string * ntype) list):Tst.tcomp =
-	match c with
-		| Pst.Unit 						-> (Tst.Unit, 	match_type target NUnit)
-		| Pst.Bool b 					-> (Tst.Bool b,	match_type target NBool)
-		| Pst.Int n 					-> (Tst.Int n,  match_type target NInt)
-		| Pst.Var x 					-> check_var x target typing_env
-		| Pst.Tag a 					-> check_tag a target
-		| Pst.Align c1 				-> check_align c1 target typing_env
-		| Pst.Pair (c1, c2) 	-> check_pair c1 c2 target typing_env
-		| Pst.Block (a, c1)   -> check_block a c1 target typing_env
-		| New c1 							-> check_new c1 target typing_env
-		| Let (x, c1, c2)			-> check_let x c1 c2 target typing_env
-		| LetRec (f, (c1, t), c2)	-> check_letrec f t c1 c2 target typing_env
-		| Lambda (x, t, c)		-> check_lambda x t c target typing_env
-		| Match (c, cases) 		-> check_match c cases target typing_env
-		| App(f, arg) 				-> check_app f arg target typing_env
-		| Typed(c1, t1) 			-> check_comp c1 (Some (norm t1)) typing_env
 
 let check_typed (c: Pst.comp) t = check_comp c (Some t) []
 

@@ -9,9 +9,9 @@ type t = (x:ab) * (match x with A -> int | B -> bool);
 let x:abcd = A;
 let y:t = A 3;
 let z:t = B true;
-let w:int = match ((A 1111111111):t, 22222222) with
-    | (A n, v) -> v
-    | (B b, v) -> v;
+let out:t = match ((A 1111111111):t, 2222222222222222222) with
+    | (A n, v) -> (A v)
+    | (B b, v) -> (B b);
 let foo:int->int = fun x:int -> x;
 let foo x:int = x in foo 1;
 let v = 

@@ -4,7 +4,8 @@ type tag_name = string
 type type_name = string
 type tag = string
 
-type bop = GT | LT | EQ
+type cbop = ADD | SUB | MUL | DIV | GT | LT | EQ
+type ebop = GT | LT | EQ
 
 type type_expr = 
   | TUnit 
@@ -25,7 +26,7 @@ type type_expr =
 	| TAlign of type_expr
 	| TIf of expr * type_expr * type_expr
 
-and expr = Int of int | Size of type_expr | Bop of bop * expr * expr
+and expr = Int of int | Size of type_expr | Bop of ebop * expr * expr
 
 type comp = 
   | Unit 
@@ -35,6 +36,9 @@ type comp =
 	| Var of var
 	| Tag of tag
 	
+	| Bop of cbop * comp * comp
+	| If of comp * comp * comp
+
 	| Pair of comp * comp
 	| Block of tag * comp
 	

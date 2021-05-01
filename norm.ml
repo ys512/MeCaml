@@ -14,7 +14,7 @@ open Env
 open Pst
 open Ntype
 
-let norm_bop op = 
+let norm_bop (op:Pst.ebop) = 
 	match op with
 	| Pst.GT -> Ntype.GT
 	| Pst.LT -> Ntype.LT
