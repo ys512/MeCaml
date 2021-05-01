@@ -29,10 +29,10 @@ let rec parse_rec args body t_body =
 %token<int> INT
 %token<bool> BOOL
 
-%right ARROW
 %nonassoc LT, GT, EQ
 %left ADD, SUB
 %left MUL, DIV
+%right ARROW
 
 %type <Pst.type_expr> type_spec
 %type <Pst.expr> expr
@@ -127,7 +127,7 @@ comp:
 | MATCH c = comp WITH cases = c_cases	    { Match (c, cases) }
 | f = comp arg = comp				        { App (f, arg) }
 | c = comp COLON t = type_spec              { Typed (c, t) }
-| LPAREN c = comp RPAREN					{ c }
+| LPAREN c = comp RPAREN %prec ARROW        { c }
 
 typed_var:
 x = ID COLON t = type_spec                  { (x, t) }

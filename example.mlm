@@ -6,16 +6,22 @@ type ab = tag ab;
 type abcd = tag abcd;
 type t = (x:ab) * (match x with A -> int | B -> bool);
 
-let x:abcd = A;
-let y:t = A 3;
-let z:t = B true;
-let out:t = match ((A 1111111111):t, 2222222222222222222) with
-    | (A n, v) -> (A v)
-    | (B b, v) -> (B b);
-let foo:int->int = fun x:int -> x;
-let foo x:int = x in foo 1;
-let v = 
-    let foo x:t = match x with
-        | A n -> n
-        | B b -> 0
-    in foo (A 1);
+# let x:abcd = A;
+# let y:t = A 3;
+# let z:t = B true;
+# let w:t = match ((A 1111111111):t, 2222222222222222222) with
+#    | (A n, v) -> (A v)
+#    | (B b, v) -> (B b);
+let out = 
+    let rec fib (x:int):int = 
+        if x=0 then 1 else (
+            if x=1 then 1 
+            else (fib (x-1)) + (fib (x-2))
+        ) in fib 3;
+# let foo:int->int = fun x:int -> x;
+# let foo x:int = x in foo 1;
+# let v = 
+#    let foo x:t = match x with
+#        | A n -> n
+#        | B b -> 0
+#    in foo (A 1);

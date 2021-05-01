@@ -28,6 +28,8 @@ let new_aux () =
 
 let bind x cx c = sprintf "(let (%s %s) %s)" x cx c
 
+let bindrec x cx c = sprintf "(let (rec (%s %s)) %s)" x cx c
+
 let pos_of_tag a ta = 
   let ts = find ta !Env.tag_env "tag" in
   index a ts
@@ -68,13 +70,14 @@ let rec translate ((comp, t):Tst.tcomp) =
   | Pair (c1, c2), _      -> translate_pair c1 c2
   | Block (a, c), _       -> translate_block a c
   | Let (x, c1, c2), _    -> translate_let x c1 c2
+  | LetRec (x, c1 ,c2), _ -> translate_letrec x c1 c2
   | Lambda (x, c), _      -> translate_lambda x c
   | App (c1, c2), _       -> translate_app c1 c2
   | Match (c1, cases), _  -> translate_match c1 cases
   | _                     -> failwith "translation error"
 
 and translate_bop op c1 c2 =
-  sprintf "(%s %s %s)" 
+  ksprintf singleton "(%s %s %s)" 
   (translate_operator op) (unbox (translate c1)) (unbox (translate c2))
 
 and translate_if c1 c2 c3 =
@@ -90,6 +93,8 @@ and translate_pair (c1, t1) (c2, t2) =
 and translate_block a c = translate_pair a c
 
 and translate_let x c1 c2 = bind (var x) (translate c1) (translate c2)
+
+and translate_letrec x c1 c2 = bindrec (var x) (translate c1) (translate c2)
 
 and translate_lambda x c = 
   sprintf "(lambda (%s) %s)"

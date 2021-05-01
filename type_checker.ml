@@ -123,7 +123,7 @@ and check_bop (op: Pst.cbop) c1 c2 target typing_env =
 and check_if c1 c2 c3 target typing_env = 
 	let checked_c1 = check_comp c1 (Some NInt) typing_env in
 	let checked_c2 = check_comp c2 target typing_env in
-	let checked_c3 = check_comp c2 target typing_env in
+	let checked_c3 = check_comp c3 target typing_env in
 	(Tst.If (checked_c1, checked_c2, checked_c3), snd checked_c2)
 
 and check_pair c1 c2 target typing_env = 

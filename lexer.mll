@@ -10,7 +10,7 @@ let int_out_of_range lexbuf s =
 
 let id = (['a'-'z'] ['a'-'z' 'A'-'Z' '_' '0'-'9']*)
 let ID = (['A'-'Z'] ['a'-'z' 'A'-'Z' '_' '0'-'9']*)
-let int = (['-']? ['0'-'9']+)
+let int = (['0'-'9']+)
 let ws = ['\t' ' ' '\n']*
 let comment = '#' [^'\n']*
 let string = '"' ([^'"'] | ('\\' '"'))* '"'
