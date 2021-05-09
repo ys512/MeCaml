@@ -38,7 +38,7 @@ let translate_unit = "(block (tag 0))"
 
 let translate_int n = singleton (string_of_int n)
 
-let translate_bool b = singleton (if b then "0" else "1")
+let translate_bool b = singleton (if b then "1" else "0")
 
 let translate_var x = var x
 
@@ -63,7 +63,7 @@ let rec translate ((comp, t):Tst.tcomp) =
   | Var x, _              -> translate_var x
   | Tag a, NTag ta        -> translate_tag a ta
   | New c, _              -> singleton(translate c)
-  | Align c, _            -> translate c
+  (* | Align c, _            -> translate c *)
   | Bop (op, c1, c2), _   -> translate_bop op c1 c2
   | If (c1, c2, c3), _    -> translate_if c1 c2 c3
   | Pair (c1, c2), _      -> translate_pair c1 c2
@@ -124,8 +124,8 @@ and translate_case comp pattern res cont =
       (unbox comp) (pos_of_tag a ta) res cont
   | Tst.Var x, _ ->
     bind (var x) comp res
-  | Tst.Align c, _ ->
-    translate_case comp c res cont
+  (* | Tst.Align c, _ ->
+    translate_case comp c res cont *)
   | Tst.New c, _ -> 
     let aux_c = new_aux () in
     bind aux_c (unbox comp)

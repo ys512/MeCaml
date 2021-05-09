@@ -30,8 +30,8 @@ and str_type (t:ntype) =
      "(if " ^ e_s ^ " then " ^ t1_s ^ " else " ^ t2_s ^ ")"
   | NRef t' ->
      "ref " ^ str_type t'
-  | NAlign t' ->
-    "align " ^ str_type t'
+  (* | NAlign t' ->
+    "align " ^ str_type t' *)
   | NProd (t1, t2) ->
     let t1_s = str_type t1 in
     let t2_s = str_type t2 in
@@ -52,4 +52,4 @@ let print_type_env () =
 
 let print_tag_env () = 
   printf "TAG ENV: \n[%s]\n"
-  (String.concat "\n" (List.map (fun (x, def) -> sprintf "%s: %s" x (String.concat " " def)) (Env.get_tag())))
+  (String.concat "\n" (List.map (fun (x, def) -> sprintf "%s: %s" x (String.concat " " def)) (Env.get_tagset())))

@@ -34,7 +34,7 @@ let prod ts1 ts2 =
 
 let rec process_tag tag = 
     match tag with
-    | Var x -> Env.lookup_tag x
+    | Var x -> Env.lookup_tagset x
     | Tagset ts -> ts
     | Sum (tag1, tag2) -> 
         let ts1 = process_tag(tag1) in
@@ -47,7 +47,7 @@ let rec process_tag tag =
 
 let process_tagdef (tag, def) = 
     let ts = process_tag def in
-    Env.remove_tag tag; Env.add_tag tag ts
+    Env.remove_tagset tag; Env.add_tagset tag ts
 
 let process_typedef (t, def) =
     let nt = Norm.norm def in

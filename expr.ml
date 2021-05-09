@@ -30,7 +30,7 @@ and size_type t =
 		let s1 = size_type t1 in
 		let s2 = size_type t2 in
 		max s1 s2
-	| NAlign t -> ((size_type t - 1) / word_size + 1) * word_size
+	(* | NAlign t -> ((size_type t - 1) / word_size + 1) * word_size *)
 	| NProd (t1, t2) ->
 		let s1 = size_type t1 in
 		let s2 = size_type t2 in

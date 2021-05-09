@@ -1,0 +1,1 @@
+let check_typed c t env = (Tst.Unit, Ntype.NUnit)

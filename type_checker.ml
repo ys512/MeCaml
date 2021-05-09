@@ -44,6 +44,9 @@ let convert_bop op =
 	| Pst.SUB -> Tst.SUB
 	| Pst.MUL -> Tst.MUL
 	| Pst.DIV -> Tst.DIV
+
+let convert_cop op =
+	match op with
 	| Pst.LT -> Tst.LT
 	| Pst.GT -> Tst.GT
 	| Pst.EQ -> Tst.EQ
@@ -57,7 +60,7 @@ let check_var x target typing_env =
 let check_tag a target = 
 		match target with
 		| Some (NTag ta) -> 
-			let tagset = Env.lookup_tag ta in
+			let tagset = Env.lookup_tagset ta in
 			if List.mem a tagset then 
 				(Tst.Tag a, NTag ta) 
 			else failwith (a ^ "not in tagset" ^ ta)
@@ -71,7 +74,7 @@ let rec extract_pattern pattern target =
 	| Pst.Var x, _ -> [(x, target)]
 	| Pst.Pair (c1, c2), NProd (t1, t2) -> extract_pattern c1 t1 @ extract_pattern c2 t2
 	| Pst.Block (a, c) , NMatch (_, cases) -> let t = find a cases "tag" in extract_pattern c t
-	| Pst.Align c, NAlign t -> extract_pattern c t
+	(* | Pst.Align c, NAlign t -> extract_pattern c t *)
 	| Pst.New c, NRef t -> extract_pattern c t
 	| _ -> fail_typechecker "malformed pattern in match expression"
 
@@ -86,7 +89,8 @@ let rec	check_comp (c:Pst.comp) target (typing_env:(string * ntype) list):Tst.tc
 		| Pst.Int n 					-> (Tst.Int n,  match_type target NInt)
 		| Pst.Var x 					-> check_var x target typing_env
 		| Pst.Tag a 					-> check_tag a target
-		| Pst.Align c1 				-> check_align c1 target typing_env
+		(* | Pst.Align c1 				-> check_align c1 target typing_env *)
+		| Pst.Cop (op, c1, c2)-> check_cop op c1 c2 target typing_env
 		| Pst.Bop (op, c1, c2)-> check_bop op c1 c2 target typing_env
 		| Pst.If (c1, c2, c3)	-> check_if c1 c2 c3 target typing_env
 		| Pst.Pair (c1, c2) 	-> check_pair c1 c2 target typing_env
@@ -99,7 +103,7 @@ let rec	check_comp (c:Pst.comp) target (typing_env:(string * ntype) list):Tst.tc
 		| App(f, arg) 				-> check_app f arg target typing_env
 		| Typed(c1, t1) 			-> check_comp c1 (Some (norm t1)) typing_env
 
-and check_align c target typing_env = 
+(* and check_align c target typing_env = 
 	match target with
 	| Some (NAlign t1) -> 
 		let cc = check_comp c (Some t1) typing_env in
@@ -107,18 +111,17 @@ and check_align c target typing_env =
 	| None ->
 		let (cc, tc) = check_comp c None typing_env in
 		(Tst.Align (cc, tc), NAlign tc)
-	| Some t -> fail_typechecker (constructor_mismatch t "Align")
+	| Some t -> fail_typechecker (constructor_mismatch t "Align") *)
 
-and check_bop (op: Pst.cbop) c1 c2 target typing_env = 
-	match op with
-	| ADD | SUB | MUL| DIV -> 
+and check_cop op c1 c2 target typing_env =
+	let checked_c1 = check_comp c1 (Some NInt) typing_env in
+	let checked_c2 = check_comp c2 (Some NInt) typing_env in
+	(Tst.Bop (convert_cop op, checked_c1, checked_c2), NBool)	
+
+and check_bop op c1 c2 target typing_env = 
 		let checked_c1 = check_comp c1 (Some NInt) typing_env in
 		let checked_c2 = check_comp c2 (Some NInt) typing_env in
 		(Tst.Bop (convert_bop op, checked_c1, checked_c2), NInt)
-	| GT | LT | EQ ->
-		let checked_c1 = check_comp c1 (Some NInt) typing_env in
-		let checked_c2 = check_comp c2 (Some NInt) typing_env in
-		(Tst.Bop (convert_bop op, checked_c1, checked_c2), NBool)
 
 and check_if c1 c2 c3 target typing_env = 
 	let checked_c1 = check_comp c1 (Some NInt) typing_env in

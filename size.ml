@@ -2,10 +2,10 @@ open Ntype
 
 let rec log x = if x <= 1 then 0 else log (x/2) + 1
 
-let bits x = if x <= 1 then 0 else log (x-1) + 1
+let clog x = if x <= 1 then 0 else log (x-1) + 1
 
 let size_tag tag = 
-	bits (List.length (Env.lookup_tag tag))
+	clog (List.length (Env.lookup_tagset tag))
 
 let rec add s1 s2 = 
 	match s1, s2 with

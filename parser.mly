@@ -59,10 +59,10 @@ compdef:
 
 tag_spec:
 | x = ID								  	{ Var x }
-| LBRACE separated_nonempty_list(COMMA, LABEL) RBRACE   { Tagset $2 }
+| l = separated_nonempty_list(VBAR, LABEL)  { Tagset l }
 | t1 = tag_spec ADD t2 = tag_spec         	{ Sum (t1, t2) }
 | t1 = tag_spec MUL t2 = tag_spec       	{ Prod (t1, t2) }
-| LPAREN tag_spec RPAREN					{ $2 }
+| LPAREN t = tag_spec RPAREN			    { t }
 
 type_spec:
 | BOOLTYPE									{ TBool }
@@ -71,14 +71,14 @@ type_spec:
 | x = ID									{ TVar x }
 | TAG a = ID								{ TTag a }
 | t = type_spec REF							{ TRef t }
-| LBRACE t = type_spec RBRACE 				{ TAlign t }
+// | LBRACE t = type_spec RBRACE 				{ TAlign t }
 | t1 = type_spec MUL t2 = type_spec			{ TProd (t1, t2) }
 | t1 = type_spec ARROW t2 = type_spec		{ TFun (t1, t2) }
 | MATCH x = ID WITH cases = t_cases			{ TMatch (x, cases) }
 | IF e = expr THEN t1 = type_spec ELSE t2 = type_spec	{ TIf (e, t1, t2) }
 | LPAREN t = type_spec RPAREN				{ t }
 
-ebop:
+cop:
 | GT										{ GT }
 | LT										{ LT }
 | EQ										{ EQ }
@@ -86,7 +86,7 @@ ebop:
 expr:
 | n = INT									{ Int n }
 | SIZE LPAREN t = type_spec RPAREN 			{ Size t }
-| e1 = expr op = ebop e2 = expr             { Bop (op, e1, e2) }
+| e1 = expr op = ebop e2 = expr             { Cop (op, e1, e2) }
 
 t_cases:
 | separated_nonempty_list(VBAR, t_case)  	    { $1 }
@@ -95,26 +95,24 @@ t_cases:
 t_case:
 | p = LABEL ARROW t = type_spec 			{ (p, t) }
 
-cbop:
+bop:
 | ADD										{ ADD }
 | SUB										{ SUB }
 | MUL										{ MUL }
 | DIV										{ DIV }
-| GT										{ GT }
-| LT										{ LT }
-| EQ										{ EQ }
 
 comp:
 | LPAREN RPAREN								{ Unit }
 | n = INT									{ Int n }
 | b = BOOL									{ Bool b }
 | x = ID									{ Var x }
-| a = LABEL									{ Tag a }
-| LBRACE c = comp RBRACE					{ Align c }
+| a = LABEL                                 { Tag a }
+// | LBRACE c = comp RBRACE					{ Align c }
 | a = LABEL c = comp                        { Block (a, c) }
 | LPAREN c1 = comp COMMA c2 = comp RPAREN	{ Pair (c1, c2) }
 | NEW c = comp								{ New c }
-| c1 = comp op = cbop c2 = comp             { Bop (op, c1, c2) }
+| c1 = comp op = cop c2 = comp              { Cop (op, c1, c2) }
+| c1 = comp op = bop c2 = comp              { Bop (op, c1, c2) }
 | IF c1 = comp THEN c2= comp ELSE c3 = comp { If (c1, c2, c3) }
 | FUN x = ID COLON t = type_spec ARROW c = comp     { Lambda (x, t, c) }
 | LET x = ID EQ c1 = comp IN c2 = comp              { Let (x, c1, c2) }
@@ -125,9 +123,9 @@ comp:
 | LET REC f = ID LPAREN args = list(typed_var) RPAREN COLON t = type_spec EQ c1 = comp IN c2 = comp   
                                                                     { LetRec (f, parse_rec args c1 t, c2) }
 | MATCH c = comp WITH cases = c_cases	    { Match (c, cases) }
-| f = comp arg = comp				        { App (f, arg) }
+| f = comp arg = comp %prec ARROW           { App (f, arg) }
 | c = comp COLON t = type_spec              { Typed (c, t) }
-| LPAREN c = comp RPAREN %prec ARROW        { c }
+| LPAREN c = comp RPAREN                    { c }
 
 typed_var:
 x = ID COLON t = type_spec                  { (x, t) }
@@ -140,10 +138,10 @@ c_case:
 | p = comp_pattern ARROW c = comp 			{ (p, c) }
 
 comp_pattern:
-| n = INT									{ Int n }
-| x = ID									{ Var x }
-| a = LABEL								    { Tag a }
-| a = LABEL c = comp_pattern                { Block (a, c) }
-| LBRACE p = comp_pattern RBRACE			{ Align p }
-| LPAREN p1 = comp_pattern COMMA p2 = comp_pattern RPAREN	{ Pair (p1, p2) }
-| NEW p = comp_pattern						{ New p }
+| n = INT									{ PInt n }
+| x = ID									{ PVar x }
+| a = LABEL								    { PTag a }
+| a = LABEL c = comp_pattern                { PBlock (a, c) }
+// | LBRACE p = comp_pattern RBRACE			{ Align p }
+| LPAREN p1 = comp_pattern COMMA p2 = comp_pattern RPAREN	{ PPair (p1, p2) }
+| NEW p = comp_pattern						{ PNew p }

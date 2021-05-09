@@ -5,6 +5,12 @@ type var = string
 
 type bop = ADD | SUB | MUL | DIV | GT | LT | EQ
 
+type pat_atom = 
+  | PTag of tag
+  | PVar of var
+
+type pattern = (pat_atom * Ntype.ntype) list
+
 type tcomp = comp * Ntype.ntype
 
 and comp = 
@@ -25,8 +31,8 @@ and comp =
   | LetRec of var * tcomp * tcomp
   | Lambda of var * tcomp
   | App of tcomp * tcomp
-  | Match of tcomp * (tcomp * tcomp) list
+  | Match of tcomp * (pattern * tcomp) list
 
-  | Align of tcomp
+  (* | Align of tcomp *)
   | New of tcomp
   

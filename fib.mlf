@@ -1,0 +1,4 @@
+(module
+  ($out (let (rec ($fib (lambda ($x) (if (field 0 (block (tag 0) (== (field 0 $x) (field 0 (block (tag 0) 0))))) (block (tag 0) 1) (if (field 0 (block (tag 0) (== (field 0 $x) (field 0 (block (tag 0) 1))))) (block (tag 0) 1) (block (tag 0) (+ (field 0 (apply $fib (block (tag 0) (- (field 0 $x) (field 0 (block (tag 0) 1)))))) (field 0 (apply $fib (block (tag 0) (- (field 0 $x) (field 0 (block (tag 0) 2))))))))))))) (apply $fib (block (tag 0) 40))))
+  (_ (apply (global $Mem $debug) $out))
+(export $out))

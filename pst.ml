@@ -4,12 +4,14 @@ type tag_name = string
 type type_name = string
 type tag = string
 
-type cbop = ADD | SUB | MUL | DIV | GT | LT | EQ
-type ebop = GT | LT | EQ
+type bop = ADD | SUB | MUL | DIV
+type cop = GT | LT | EQ
 
 type type_expr = 
   | TUnit 
 	| TInt 
+	| TShort
+	| TChar
 	| TBool 
 	
 	| TVar of type_name
@@ -23,10 +25,18 @@ type type_expr =
 	| TFun of type_expr * type_expr
 	
 	| TRef of type_expr
-	| TAlign of type_expr
+	(* | TAlign of type_expr *)
 	| TIf of expr * type_expr * type_expr
 
-and expr = Int of int | Size of type_expr | Bop of ebop * expr * expr
+and expr = Int of int | Size of type_expr | Cop of cop * expr * expr
+
+type pattern = 
+	| PTag of tag
+	| PVar of var
+	| PPair of pattern * pattern
+	| PBlock of tag * pattern
+	(* | Align of pattern *)
+	| PNew of pattern
 
 type comp = 
   | Unit 
@@ -36,7 +46,8 @@ type comp =
 	| Var of var
 	| Tag of tag
 	
-	| Bop of cbop * comp * comp
+	| Cop of cop * comp * comp
+	| Bop of bop * comp * comp
 	| If of comp * comp * comp
 
 	| Pair of comp * comp
@@ -46,10 +57,10 @@ type comp =
 	| LetRec of var * (comp * type_expr) * comp
 	| Lambda of var * type_expr * comp
 	| App of comp * comp
-	| Match of comp * (comp * comp) list
+	| Match of comp * (pattern * comp) list
 
 	| New of comp
-	| Align of comp
+	(* | Align of comp *)
 	| Typed of comp * type_expr
 
 (* type comp_pattern = Int of int | Var of string | Tag of string  *)

@@ -1,6 +1,11 @@
 *.cmi
 *.cmo
 *.cma
+*.exe
+*.cmx
+*.o
+*.out
+*.txt
 lexer.ml
 parser.ml
 
