@@ -1,0 +1,14 @@
+let n = 1000;
+let m = 200000;
+
+let fib = 
+let rec f (n:int y:int z:int):int = 
+    if n=0 then y
+    else ((f (n-1)) (y+z)) y
+in f;
+
+let rec bench (x:int):unit =
+    if x = 0 then ()
+    else let k = ((fib n) 1) 1 in
+    bench (x-1)
+in bench m;

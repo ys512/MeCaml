@@ -1,0 +1,15 @@
+let gcd = let rec f (x:short*short):short = 
+    match x with (a, b) -> 
+        if (a % b) = 0 then b 
+        else f (b, a % b) in f;
+
+let n = 3000;
+
+let rec bench (x:short*short):unit =
+    match x with (a,b) -> 
+    let _ = gcd (a,b) in
+    if a = 1 then
+        if b = 1 then ()
+        else bench (n, b-1)
+    else bench (a-1, b)
+in bench (n, n);
